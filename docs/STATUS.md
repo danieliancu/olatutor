@@ -1,6 +1,6 @@
 # Starea proiectului
 
-**Ultima actualizare:** 2026-11-03, după primul commit și legarea la GitHub.
+**Ultima actualizare:** 2026-11-03, după adăugarea site-ului de prezentare.
 
 Acesta e fișierul de urmărit. Se actualizează la finalul fiecărui milestone și ori de câte ori se schimbă o decizie sau un blocaj. Dovezile detaliate sunt în [PROGRESS.md](PROGRESS.md).
 
@@ -24,6 +24,8 @@ Stări folosite: **PASS**, **PARTIAL**, **BLOCKED**, **FAIL**, plus **Neînceput
 ## Ce ai de făcut sau de decis
 
 - [ ] **Alegi următorul milestone.** Recomandarea mea e Milestone 4.
+- [x] **Numele „olátutor”** e confirmat. Footerul folosește firma și adresa de contact de la olacompanion.
+- [ ] **Pagini legale pentru site** (confidențialitate, termeni): nu există încă. Cele de la olacompanion sunt scrise pentru ceas, așa că nu le-am legat.
 - [ ] **Testezi cu un stilou real pe o tabletă,** după pașii din [README](../README.md). Durează puțin și poate schimba designul.
 - [ ] **Când ajunge placa:** îmi spui revizia scrisă pe ea (V1.0, V1.1 sau V1.2) și ce stilou ai.
 - [x] **Commit și remote:** codul e pe <https://github.com/danieliancu/olatutor> (repo public).
@@ -43,6 +45,7 @@ Stări folosite: **PASS**, **PARTIAL**, **BLOCKED**, **FAIL**, plus **Neînceput
 - [x] Conflicte între două dispozitive, rezolvate de utilizator, fără pierderi
 - [x] Revizii imutabile, verificate cu hash-uri
 - [x] Reconstrucția paginii în Python, identică cu cea din browser
+- [x] Site de prezentare la `/`, în stilul olacompanion, cu funcțiile marcate clar ca existente sau planificate
 
 ## Ce nu există încă
 
@@ -78,7 +81,7 @@ Testele din browser folosesc input simulat. Ele verifică datele și logica, nu 
 | Respingerea palmei | **BLOCKED** | Placa fizică |
 | Toate datele despre placă, citite doar din documentație | **BLOCKED** | Placa fizică |
 | Acuratețea pe scrisul copiilor | **BLOCKED** | Pilot aprobat, după DPIA |
-| CI | Prima rulare abia pornește, rezultat necunoscut | Verificarea rulării pe GitHub |
+| CI | **FAIL** la prima rulare, la pasul Lint. Cauza probabilă, reprodusă local: containerul nu poate scrie cache în checkout. Remedierea e în `ci.yml`, neverificată pe GitHub | Push și o rulare nouă |
 
 ## Riscuri principale
 
@@ -115,3 +118,4 @@ Apoi deschizi <http://localhost:8000/notebook/>. Pașii compleți și comenzile 
 | 2026-11-02 | Milestone 2 blocat: placa nu e disponibilă. Am continuat cu ce nu depinde de hardware |
 | 2026-11-02 | Milestone 1 încheiat: caiet cu mai multe pagini, pe trei motoare de browser |
 | 2026-11-03 | Primul commit și legarea la GitHub |
+| 2026-11-03 | Site de prezentare adăugat, fără conturi și fără dashboard |

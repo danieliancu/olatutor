@@ -1,0 +1,144 @@
+{% extends "pages/base.html" %}
+{% block title %}olátutor: a maths notebook for UK families, in development{% endblock %}
+{% block description %}olátutor is a parent-managed digital notebook in development. Children write anywhere on the page, and it is being built to read handwritten maths and check the working.{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>A notebook, not a form.<br><span class="gradient">Built to follow the working.</span></h1>
+      <p class="lead">Children write anywhere on the page, the way they would on paper. <strong>olátutor</strong> is a parent-managed digital notebook, and we're building it to read handwritten maths and show feedback right beside the work.</p>
+      <div class="actions">
+        {% if notebook_enabled %}
+          <a class="btn btn-primary" href="{% url 'new_notebook' %}">Try the notebook <span aria-hidden="true">→</span></a>
+        {% endif %}
+        <a class="btn {% if notebook_enabled %}btn-ghost{% else %}btn-primary{% endif %}" href="#how">How it will work</a>
+      </div>
+    </div>
+    <figure class="hero-art">
+      <div class="device" data-state="ask">{% include "pages/_page_art.html" %}</div>
+      <div class="bubbles">
+        <p class="bubble bubble-dark">Is this a 1 or a 7?</p>
+        <p class="bubble bubble-blue">It's a 7.</p>
+        <p class="bubble bubble-dark">Thanks. Your division step is right.</p>
+      </div>
+      <figcaption>Illustration of the planned experience. Reading and checking aren't built yet.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="features" aria-label="Features">
+  <div class="wrap feature-grid">
+    <article>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19zM14 7l3 3"/></svg>
+      <h2>Free writing</h2>
+      <p>Pen, eraser and undo, anywhere on the page.</p>
+      <span class="tag tag-now">In the prototype</span>
+    </article>
+    <article>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM9 8h6M9 12h6M9 16h4"/></svg>
+      <h2>Many pages</h2>
+      <p>Portrait or landscape, with zoom up to 200%.</p>
+      <span class="tag tag-now">In the prototype</span>
+    </article>
+    <article>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M8.5 16a5 5 0 0 1 7 0M5 12.5a10 10 0 0 1 4-2.4M19 12.5a10 10 0 0 0-5-2.7M12 20h.01"/></svg>
+      <h2>Keeps working offline</h2>
+      <p>Ink is saved on the device, then sent when back online.</p>
+      <span class="tag tag-now">In the prototype</span>
+    </article>
+    <article>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M8 11h6"/></svg>
+      <h2>Reads handwriting</h2>
+      <p>And asks when it isn't sure, rather than guessing.</p>
+      <span class="tag tag-planned">Planned</span>
+    </article>
+    <article>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+      <h2>Checks the working</h2>
+      <p>Step by step, with feedback beside the work.</p>
+      <span class="tag tag-planned">Planned</span>
+    </article>
+    <article>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      <h2>Parents in charge</h2>
+      <p>Set the work, see the real pages, overrule any mark.</p>
+      <span class="tag tag-planned">Planned</span>
+    </article>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <h2 class="section-title">How it will work</h2>
+    <p class="section-lead">One page, from first stroke to a parent's review. Only the first step exists today.</p>
+    <div class="how-grid" data-steps>
+      <div class="how-panel">
+        <div class="device" data-state="write" data-step-art>{% include "pages/_page_art.html" %}</div>
+      </div>
+      <ol class="steps">
+        <li><button type="button" class="step is-active" data-step="write" aria-pressed="true">
+          <span class="step-num" aria-hidden="true">1</span>
+          <span class="step-body"><strong>Write freely</strong><span>Sums, columns, crossings-out. No boxes to fill in and no keyboard needed.</span><span class="tag tag-now">In the prototype</span></span>
+        </button></li>
+        <li><button type="button" class="step" data-step="ask" aria-pressed="false">
+          <span class="step-num" aria-hidden="true">2</span>
+          <span class="step-body"><strong>Read, and ask when unsure</strong><span>If a digit could be a 1 or a 7, the child is asked. Reading never sees the expected answer.</span><span class="tag tag-planned">Planned</span></span>
+        </button></li>
+        <li><button type="button" class="step" data-step="check" aria-pressed="false">
+          <span class="step-num" aria-hidden="true">3</span>
+          <span class="step-body"><strong>Check the working</strong><span>Exact maths rules check each step, and feedback appears beside it on the page.</span><span class="tag tag-planned">Planned</span></span>
+        </button></li>
+        <li><button type="button" class="step" data-step="review" aria-pressed="false">
+          <span class="step-num" aria-hidden="true">4</span>
+          <span class="step-body"><strong>Parents review</strong><span>You see the handwritten page itself, and can change any mark. The original is kept.</span><span class="tag tag-planned">Planned</span></span>
+        </button></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="promises" id="promises">
+  <div class="wrap">
+    <h2 class="section-title">The rules we're building to</h2>
+    <p class="section-lead">These hold whichever features come first.</p>
+    <div class="promise-grid">
+      <article class="promise promise-a">
+        <p class="hand">“Unsure” is not “wrong”</p>
+        <p>Messy handwriting is never marked as a mistake. Unclear work goes back to be confirmed or reviewed.</p>
+      </article>
+      <article class="promise promise-b">
+        <p class="hand">Reads first, marks later</p>
+        <p>Reading never sees the expected answer, so it can't quietly “read” what it hoped to find.</p>
+      </article>
+      <article class="promise promise-c">
+        <p class="hand">The grown-up decides</p>
+        <p>Parents can overrule any mark. The original result stays on record beside their decision.</p>
+      </article>
+      <article class="promise promise-d">
+        <p class="hand">No ads, no open chat</p>
+        <p>No targeted advertising, no public profiles and no unrestricted chat for children.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="progress" id="progress">
+  <div class="wrap progress-grid">
+    <div>
+      <h2 class="section-title">Where we are today</h2>
+      <p class="section-lead">The notebook has been tested in desktop browsers with simulated pen input. It hasn't yet been tried with a real stylus on a tablet, or by any child.</p>
+      <p class="no-child-data"><strong>We don't collect children's data.</strong> That won't change until a full data protection assessment and legal review are done.</p>
+    </div>
+    <ul class="status-card">
+      <li><span class="tag tag-now">Working</span><span>Writing, erasing and undo on many pages</span></li>
+      <li><span class="tag tag-now">Working</span><span>Offline saving, and sync without losing work</span></li>
+      <li><span class="tag tag-test">To be tested</span><span>Real stylus and tablets</span></li>
+      <li><span class="tag tag-planned">Planned</span><span>Maths checking and on-page feedback</span></li>
+      <li><span class="tag tag-planned">Planned</span><span>Handwriting recognition</span></li>
+      <li><span class="tag tag-planned">Planned</span><span>Family accounts and parent dashboard</span></li>
+      <li><span class="tag tag-test">Waiting for hardware</span><span>Optional dedicated writing device</span></li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

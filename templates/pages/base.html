@@ -1,0 +1,58 @@
+{% load static %}<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}olátutor{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <link rel="preload" href="{% static 'fonts/montserrat-latin-wght-normal.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{% static 'fonts/inter-latin-wght-normal.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <script src="{% static 'js/site.js' %}" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="banner">In development<span aria-hidden="true"> · </span>Not yet open to families<span class="banner-extra"><span aria-hidden="true"> · </span>Starting with Key Stage 2 maths</span></p>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="logo-link" href="{% url 'home' %}">{% include "pages/_logo.html" %}</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#promises">Our principles</a>
+        <a href="#progress">Progress</a>
+      </nav>
+      {% if notebook_enabled %}
+        <a class="btn btn-primary btn-small" href="{% url 'new_notebook' %}">Try the notebook</a>
+      {% else %}
+        <a class="btn btn-primary btn-small" href="#progress">See progress</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <main id="main">{% block content %}{% endblock %}</main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        {% include "pages/_logo.html" %}
+        <p>A parent-managed digital notebook for UK families, in development.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h2>On this page</h2>
+        <a href="#how">How it works</a>
+        <a href="#promises">Our principles</a>
+        <a href="#progress">Progress</a>
+      </nav>
+      <div>
+        <h2>Please note</h2>
+        <p>This is a technical prototype. It has no accounts, and must not be used with children's work.</p>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© 2026 Ola Technologies London Ltd. All rights reserved.</p>
+      <p>Essex, United Kingdom · <a href="mailto:ola@olacompanion.com">ola@olacompanion.com</a></p>
+    </div>
+  </footer>
+</body>
+</html>

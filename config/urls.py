@@ -13,5 +13,6 @@ def healthz(request: HttpRequest) -> JsonResponse:
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("healthz", healthz, name="healthz"),
+    path("", include("apps.pages.urls")),
     path("", include("apps.notebooks.urls")),
 ]

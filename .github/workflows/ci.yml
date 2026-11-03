@@ -9,6 +9,9 @@ jobs:
       POSTGRES_PASSWORD: ci-only-not-a-secret
     steps:
       - uses: actions/checkout@v4
+      # The checkout is mounted into a container whose user has another UID, and tools write caches there.
+      - name: Let the container user write to the checkout
+        run: chmod -R a+rwX .
       - name: Build
         run: docker compose build web
       - name: Start database
