@@ -1,0 +1,17 @@
+{
+  "kind": "result",
+  "version": 1,
+  "page_revision": { "page_id": "p1", "revision": 4, "visible_hash": "2222222222222222222222222222222222222222222222222222222222222222" },
+  "exercise_ref": "exercise-1",
+  "solution_ref": null,
+  "step_ref": null,
+  "mathematical_status": "UNDETERMINED",
+  "task_compliance": "NOT_EVALUATED",
+  "error_class": "UNREADABLE",
+  "uncertainty": { "recognition": 0.41, "mathematical": null },
+  "score": null,
+  "grading_version": "contract-fixture",
+  "explanation_code": "ASK_CLARIFICATION",
+  "requires_review": true,
+  "source_node_ids": ["region-middle"]
+}

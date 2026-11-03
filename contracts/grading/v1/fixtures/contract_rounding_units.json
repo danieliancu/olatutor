@@ -1,0 +1,25 @@
+{
+  "kind": "contract",
+  "version": 1,
+  "exercise_type": "measure.rounding_units",
+  "statement": "A ribbon is 7 cm long and is cut into 3 equal pieces. How long is each piece, to 2 decimal places?",
+  "variable_domains": {},
+  "assumptions": [],
+  "expected": { "kind": "value", "values": ["2.33"] },
+  "accepted_forms": ["2.33", "2.33 cm"],
+  "required_format": "decimal_places",
+  "rounding": { "places": 2, "mode": "half_up" },
+  "units": { "expected": "cm", "accepted": ["cm"], "required": false },
+  "valid_transformations": [],
+  "invalid_transformations": ["truncate instead of rounding"],
+  "alternative_methods": "not_applicable",
+  "partial_credit": { "max_score": 1, "rules": [] },
+  "unsupported": ["conversion to another unit"],
+  "examples": [
+    { "answer": "2.33", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+    { "answer": "2.33 cm", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+    { "answer": "2.3", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ROUNDING_ERROR", "score": 0 },
+    { "answer": "2.33 m", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "UNIT_ERROR", "score": 0 },
+    { "answer": "23.3 mm", "mathematical_status": "UNSUPPORTED", "task_compliance": "NOT_EVALUATED", "error_class": "UNSUPPORTED_METHOD", "score": null }
+  ]
+}

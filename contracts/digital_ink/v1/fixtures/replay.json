@@ -1,0 +1,3631 @@
+{
+ "page": {
+  "page_id": "page-1",
+  "width": 2100,
+  "height": 2970
+ },
+ "cases": [
+  {
+   "name": "empty_page",
+   "ops": [],
+   "pin_index": 0,
+   "expect": {
+    "visible": [],
+    "undo": [],
+    "redo": [],
+    "op_hashes": [],
+    "chain_hash": "a1b1c5838b99c68231742e9d132cb48334ed880f9917885d944d2c1cd2677922",
+    "visible_hash": "3a0e6bc846aebf21ea12e9cfb3dee43e3a62b3b59a08d08fbe12f2d87c5a8551",
+    "full_hash": "adad772b46bf2dd422b64c0efefb29e630f65792f56311cde47e7cd37f9142e6"
+   }
+  },
+  {
+   "name": "single_stroke",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ],
+       [
+        30,
+        100,
+        20,
+        null
+       ],
+       [
+        40,
+        100,
+        30,
+        null
+       ],
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2"
+    ],
+    "chain_hash": "ba001056571c144b39493228a56018d6127059849c6758080be0a3a964742059",
+    "visible_hash": "c98ffc2f084a788c78e3843891732779645b1d01f7bc429e3ec1008cce5c04de",
+    "full_hash": "2a38b433aec8110cb19164218ba657cdea59641905db1723b09bebfdc9509832"
+   }
+  },
+  {
+   "name": "single_point_stroke",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         5,
+         100,
+         0,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        5,
+        100,
+        0,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "d09f932b4d1ddf9ee5c3ad166ed803037e3722e2ab7ee7319ef84bd0910278ab"
+    ],
+    "chain_hash": "19d1060eba044979f030eb59bac3f8208174ac2ef0666d2f0157a4c15f911bb4",
+    "visible_hash": "c8decdd46dfe175359bcae91e7b47ccf4432b2a648c4f1f412f28e241af838c8",
+    "full_hash": "cb20f9b7a68bc94c71fe1d1417f08b11d487b9e0f4b538e641fe1c77e9976d27"
+   }
+  },
+  {
+   "name": "draw_order_is_journal_order",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "zz",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "aa",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         3,
+         100,
+         0,
+         null
+        ],
+        [
+         4,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "zz",
+      "points": [
+       [
+        1,
+        100,
+        0,
+        null
+       ],
+       [
+        2,
+        100,
+        10,
+        null
+       ]
+      ]
+     },
+     {
+      "id": "aa",
+      "points": [
+       [
+        3,
+        100,
+        0,
+        null
+       ],
+       [
+        4,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "c8a561c58e76ac1d9e78c3b0fe39f344e0759dfe117454d0ad8a9cca9e138c77",
+     "d3dd8771767dbec4cb3b1ac35cfae1863486c8092af7f0608cce3bda8bd1569b"
+    ],
+    "chain_hash": "a7a1b137a6a29d4185a2449792bf9244d67a0941ec6871c225e32a6cdf55ee3f",
+    "visible_hash": "aba7673367e4a18960fb2af371d1eb0efce38306f328e4b5550c2a275b6d73da",
+    "full_hash": "472bee6e715dafdd50fbec167e1e5b9e55a55a4ae76c5b27513f57c3854e1b7c"
+   }
+  },
+  {
+   "name": "pressure_preserved",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         512
+        ],
+        [
+         2,
+         100,
+         10,
+         512
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        1,
+        100,
+        0,
+        512
+       ],
+       [
+        2,
+        100,
+        10,
+        512
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "17534d5014849b069e5d23eb80dc56beb3ee334199992ba7180362f8d94ba886"
+    ],
+    "chain_hash": "f0581215dd6c6b9b5921e59579a3c8a4613aeb63bf15b6859a88b3a6936ab978",
+    "visible_hash": "613c4a01c426f9e8f73c0bb9804000f3a47fb6dfe9080f26a7e05f0445b63fb4",
+    "full_hash": "a8c40af4c2de84d4d7272566d5708b89a1bb6c9edbc10e14d49c999764cc3fa9"
+   }
+  },
+  {
+   "name": "remove_then_undo_restores",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "user"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        1,
+        100,
+        0,
+        null
+       ],
+       [
+        2,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1"
+    ],
+    "redo": [
+     "op-2"
+    ],
+    "op_hashes": [
+     "6a94b020ed0a12020cf3fce1af3982eb8f863c57ab15bce0c8bf1d66a0ad4336",
+     "2d1dfa2410e7283e1f5a13f5e4d53985418e5767f372bbf21ce1d5de5d8f06cb",
+     "bdaa3795ab394e56ed48467ef19cd1c4e7e5e37049897a89d33cceffd6f1ada7"
+    ],
+    "chain_hash": "b007e7a7023dc67ccba58bfed2fa804b507c542ca94a72dc3c11bc64c87fb691",
+    "visible_hash": "81cac57359a63e5ccb0e50a10329e6d578993c4560ff02edd95f285ef8239d8a",
+    "full_hash": "ff800149aaabb5b7eda1a38e11e18624454d231c4a11223b59df8ba262596f3d"
+   }
+  },
+  {
+   "name": "erase_middle_splits_in_two",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         },
+         {
+          "id": "c2",
+          "start": 4,
+          "end": 5
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "c1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ]
+      ]
+     },
+     {
+      "id": "c2",
+      "points": [
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "2bd70df8eb56eb815fd97467cb9a8035796fba430acad740af41fc814daf4bca"
+    ],
+    "chain_hash": "12e12e1b52b20a72301e8b40897acdabb7bafd98fa5bd8923c50f1cb5acfe806",
+    "visible_hash": "92b4a6f422b9dbb3deb2fe4477aa232da393a2fce90a779cfe552f881284fb4d",
+    "full_hash": "ad74b530c3b93c073539bd02f01d360dada0b542680e413c4fcd259cfa4ad222"
+   }
+  },
+  {
+   "name": "erase_start",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 2,
+          "end": 5
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "c1",
+      "points": [
+       [
+        30,
+        100,
+        20,
+        null
+       ],
+       [
+        40,
+        100,
+        30,
+        null
+       ],
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "97a7d564c17f69bac83bd5ff90a8a5428966c519fbfd106dc6d7c8f297f01e8b"
+    ],
+    "chain_hash": "3ac9a3e885f00369d8e7a7c5eafa9bce2e2af032b152c1beb648deb3e21e44d3",
+    "visible_hash": "945a15d72358d9382b97df68d542e9112fcacda5683c1bff2808f82ba8c03204",
+    "full_hash": "984b912e39d996ffb252c141e189036f2c47a509d54555f3d2d63ea8c7551619"
+   }
+  },
+  {
+   "name": "erase_end",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 3
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "c1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ],
+       [
+        30,
+        100,
+        20,
+        null
+       ],
+       [
+        40,
+        100,
+        30,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "1d1f7bff320c535db7db7cf03931511cb1fc6beb184b8eeb3ca0a2edb3a0802d"
+    ],
+    "chain_hash": "48308b0efccc94c30290e4547c401c0e73a621845c20739c5f94ba68fc549d7f",
+    "visible_hash": "6c469377c2fd34249342d7a31ee612bdf79efa0b1375809b442b1fd9a5c13407",
+    "full_hash": "295f7643a2189125d5228dd2e6ddb6cac3a376d3ab6dbc8c410298bddcd933e6"
+   }
+  },
+  {
+   "name": "erase_everything",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": []
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "52bdff282133aa257a43b25f3441603a2b3eb97059891624a80287c1304c329f"
+    ],
+    "chain_hash": "4f0ecbb487637ccb17499132e1bb605f40a6431a3e6286492699db85114b5c61",
+    "visible_hash": "3a0e6bc846aebf21ea12e9cfb3dee43e3a62b3b59a08d08fbe12f2d87c5a8551",
+    "full_hash": "7bd6ac5130c7ab6b527fc2f16803abb660982c91671337d4590f61c11fe1464f"
+   }
+  },
+  {
+   "name": "erase_segment_only_no_vertex_removed",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 2
+         },
+         {
+          "id": "c2",
+          "start": 3,
+          "end": 5
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "c1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ],
+       [
+        30,
+        100,
+        20,
+        null
+       ]
+      ]
+     },
+     {
+      "id": "c2",
+      "points": [
+       [
+        40,
+        100,
+        30,
+        null
+       ],
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "a3f77067abde411cd8b951abf82478870b0a0321f4d0d6e577825431ab945310"
+    ],
+    "chain_hash": "2e5f12df9edff715e0d086de2272bf16bde8e431cf4ad808d5f2cb56f1903fc4",
+    "visible_hash": "a4a1506faad0c9833bb0e97b4c5e0fe9fcb2d7c4a3ae2d2d4d18b2955b9700d5",
+    "full_hash": "3b4d5b24c78346e399591026e01b2d88e37fba4ec401955eaf543f4c2d3b6137"
+   }
+  },
+  {
+   "name": "erase_leaves_single_point_child",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 0
+         },
+         {
+          "id": "c2",
+          "start": 2,
+          "end": 5
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "c1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ]
+      ]
+     },
+     {
+      "id": "c2",
+      "points": [
+       [
+        30,
+        100,
+        20,
+        null
+       ],
+       [
+        40,
+        100,
+        30,
+        null
+       ],
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "c344e29b42dc12b5e0cb443927333d6f3eb97e2b76fd1c1040d25237e71be1a1"
+    ],
+    "chain_hash": "03dad20966deb8f022384f47121a77f4f407b66703828741fd75cff77030c845",
+    "visible_hash": "eba3eca5130f12836528b5bd3cd560e009a8779fb60fdd4a2523804753e5914b",
+    "full_hash": "3bd8f03019d8a3870efaa8163b0657a7f4d55c45a68e007a428128f626368aff"
+   }
+  },
+  {
+   "name": "re_erase_a_child_indexes_the_root",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 3
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "c1",
+        "children": [
+         {
+          "id": "g1",
+          "start": 0,
+          "end": 0
+         },
+         {
+          "id": "g2",
+          "start": 2,
+          "end": 3
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "g1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ]
+      ]
+     },
+     {
+      "id": "g2",
+      "points": [
+       [
+        30,
+        100,
+        20,
+        null
+       ],
+       [
+        40,
+        100,
+        30,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2",
+     "op-3"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "1d1f7bff320c535db7db7cf03931511cb1fc6beb184b8eeb3ca0a2edb3a0802d",
+     "2bd507c6bbf6b1a2a0064a4d5e18d07104d5dddf4993e2c7f85689e4e1875b9b"
+    ],
+    "chain_hash": "745d5647a56d70d44ffe2729c834b1b58d16ce30be0541c992326e31c0363b87",
+    "visible_hash": "298e1939944af5a60599889eec954ceda103efebf8901fb74aeaaae13b3c29e2",
+    "full_hash": "2e2400c840ad22521e6a9bce623f242447a671c61a194b450114ae7dfa8e1fd0"
+   }
+  },
+  {
+   "name": "undo_erase_restores_parent_and_hides_children",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ],
+       [
+        30,
+        100,
+        20,
+        null
+       ],
+       [
+        40,
+        100,
+        30,
+        null
+       ],
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1"
+    ],
+    "redo": [
+     "op-2"
+    ],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "6733143542031cc5721b5b533a4042029cb98b76185cfc00ec6100b8a4f2c7c0",
+     "bdaa3795ab394e56ed48467ef19cd1c4e7e5e37049897a89d33cceffd6f1ada7"
+    ],
+    "chain_hash": "38285f0d9e52f08aa38d8a5de9afe958b3a91335af892368b8d705a5a3bd68df",
+    "visible_hash": "c98ffc2f084a788c78e3843891732779645b1d01f7bc429e3ec1008cce5c04de",
+    "full_hash": "fb0dc4df371825d925adc692be8a71e04e9ddb339b27fb58c95e1102061229a4"
+   }
+  },
+  {
+   "name": "redo_erase_reuses_child_ids",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-4",
+     "type": "REDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 4,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "c1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "6733143542031cc5721b5b533a4042029cb98b76185cfc00ec6100b8a4f2c7c0",
+     "bdaa3795ab394e56ed48467ef19cd1c4e7e5e37049897a89d33cceffd6f1ada7",
+     "500795ab4870cfe9af0803167c98c12dac17da7ac0774dad5d7c5d8a06e43c3f"
+    ],
+    "chain_hash": "fd8c1ea897bda3322c5cca41bbda0b127608d3acede52dd8d69a429ae6d96546",
+    "visible_hash": "565a567087b5b6c22b84e9f1472d7199672d6823ab0490093879b10ef93ab07e",
+    "full_hash": "860ec2f6de98c54b5b35e90dfe5f8d8975400a16bd17ca5e988be613bad89405"
+   }
+  },
+  {
+   "name": "children_keep_the_parents_z_position",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s2",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         },
+         {
+          "id": "c2",
+          "start": 4,
+          "end": 5
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "c1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ]
+      ]
+     },
+     {
+      "id": "c2",
+      "points": [
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     },
+     {
+      "id": "s2",
+      "points": [
+       [
+        1,
+        100,
+        0,
+        null
+       ],
+       [
+        2,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2",
+     "op-3"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "84629b293d878d326d94424e83bf41941ae5b1d58a4ae69f7c5894066f5f3ceb",
+     "cb23c09470442206bdd4cf8c5d5c3f6b84805adefe3a546e8eef0f21f6987351"
+    ],
+    "chain_hash": "eea7b27979d7aae98e8954d7a30a744f9ce2637758cca595a591647a593ad732",
+    "visible_hash": "311208f5f92a2f0d1902f1f1dcec65bb9d40314070e6f759ffeb004ec68e6609",
+    "full_hash": "0ede0804079eef26718251ae267e6edb9150406a4e667087df6a95be55613b3e"
+   }
+  },
+  {
+   "name": "new_content_clears_redo",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-1"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s2",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         3,
+         100,
+         0,
+         null
+        ],
+        [
+         4,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s2",
+      "points": [
+       [
+        3,
+        100,
+        0,
+        null
+       ],
+       [
+        4,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-3"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "6a94b020ed0a12020cf3fce1af3982eb8f863c57ab15bce0c8bf1d66a0ad4336",
+     "acca8d5ed3c2a29ad7e01dc763c445b2e9ca919a16d2c7491bc20ea06eecfc28",
+     "088d759978d7175ab156b4a41fa57242d741885ab73bbd5b44d6c9432c5a980e"
+    ],
+    "chain_hash": "ffc2f9ae8f2482ad62a2037edf5f824e29dd80edb7a423ce12ef1946d75ae3bc",
+    "visible_hash": "775f82a65ef90d7ad27cddd78cb52688b03949f5280b4880887871106403bc26",
+    "full_hash": "1048a321e446beba1da7d51831f4b91e83c32f5e77b708558d00a4a90d5255d1"
+   }
+  },
+  {
+   "name": "palm_removal_leaves_history",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "palm",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         3,
+         100,
+         0,
+         null
+        ],
+        [
+         4,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "system",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "palm"
+      ],
+      "reason": "palm"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        1,
+        100,
+        0,
+        null
+       ],
+       [
+        2,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "6a94b020ed0a12020cf3fce1af3982eb8f863c57ab15bce0c8bf1d66a0ad4336",
+     "7c7cde27743ed7dc50c98c0e96427f2e6d868848a17b8bafdca5422776c8ac0c",
+     "ec09738ecdd02035089ff92dbfa3ef280c44e20bcad3280bf2d3172eedcf6747"
+    ],
+    "chain_hash": "01f8dd096ba050311d7962719da279bfef308a8d26d796ff981fc51f6341ad3c",
+    "visible_hash": "81cac57359a63e5ccb0e50a10329e6d578993c4560ff02edd95f285ef8239d8a",
+    "full_hash": "35d620293b1c59d3c3fdb737e799b4aa46c0addc5c0852f39dcb45c3d735d17a"
+   }
+  },
+  {
+   "name": "undo_skips_a_palm_removed_stroke",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "palm",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         3,
+         100,
+         0,
+         null
+        ],
+        [
+         4,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "system",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "palm"
+      ],
+      "reason": "palm"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-4",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 4,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [],
+    "undo": [],
+    "redo": [
+     "op-2"
+    ],
+    "op_hashes": [
+     "adf710e1d449fe3525c5d26b1fbb9d2f503eecd22a2c59006e0d855c89fc0935",
+     "f38113b813ea67d15ac2bbff369d9d0b26a4da69277132faed0935c5e212c0f6",
+     "ec09738ecdd02035089ff92dbfa3ef280c44e20bcad3280bf2d3172eedcf6747",
+     "6eb9ead6d7a0748918ce83e229064172fa8a3e5ca2339a2b23535db56ecdfd8e"
+    ],
+    "chain_hash": "7d14165e0f547d93a7d8d796b2bd79bb82e1aa3575a78c48ab582bd77c6349d6",
+    "visible_hash": "3a0e6bc846aebf21ea12e9cfb3dee43e3a62b3b59a08d08fbe12f2d87c5a8551",
+    "full_hash": "661bdbc5d930ce07ebcb3033cc00261f24840f90a6b179ef1eed211fbb9e4638"
+   }
+  },
+  {
+   "name": "restore_a_removed_stroke_after_history_moved_on",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "user"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-4",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 4,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "user"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-5",
+     "type": "RESTORE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 5,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_id": "s1"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        1,
+        100,
+        0,
+        null
+       ],
+       [
+        2,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-4",
+     "op-5"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "6a94b020ed0a12020cf3fce1af3982eb8f863c57ab15bce0c8bf1d66a0ad4336",
+     "2d1dfa2410e7283e1f5a13f5e4d53985418e5767f372bbf21ce1d5de5d8f06cb",
+     "bdaa3795ab394e56ed48467ef19cd1c4e7e5e37049897a89d33cceffd6f1ada7",
+     "62c0b46676c5bc6502c3aa4f3a98398e36ef720ce913cd49f19ab4161b47448f",
+     "c39395b8039a975d2e170a1adf75ae6efc83ccc987729979fac880f5ebc9c9fd"
+    ],
+    "chain_hash": "f228af6f5bdd3d7f0f14a5ffcbc7f450ff13bdacbf475240dac88b9b1cace5b6",
+    "visible_hash": "81cac57359a63e5ccb0e50a10329e6d578993c4560ff02edd95f285ef8239d8a",
+    "full_hash": "e3970fd9130192f4e0c71fe2d706cc0b0695ca2706a78cbd87a65b673985e721"
+   }
+  },
+  {
+   "name": "undo_a_restore_hides_the_stroke_again",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "user"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "RESTORE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_id": "s1"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-4",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 4,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-3"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [],
+    "undo": [
+     "op-1",
+     "op-2"
+    ],
+    "redo": [
+     "op-3"
+    ],
+    "op_hashes": [
+     "6a94b020ed0a12020cf3fce1af3982eb8f863c57ab15bce0c8bf1d66a0ad4336",
+     "2d1dfa2410e7283e1f5a13f5e4d53985418e5767f372bbf21ce1d5de5d8f06cb",
+     "70ff3b5ee96d0ca220cc823df15cc411b098152a8dad85a9e1ef6277a8fc49ca",
+     "5392be27ddd857618eac5368496b0fd04755c7dc5259e1a016ce2c19fb53ab5f"
+    ],
+    "chain_hash": "0ddd44311621c48ed24cde61694fae4a88c66bb0ac21742e213e3641528e14b2",
+    "visible_hash": "3a0e6bc846aebf21ea12e9cfb3dee43e3a62b3b59a08d08fbe12f2d87c5a8551",
+    "full_hash": "b012b57f999c51904744072645a3626f98b1d8985ebe6b9e5fdad6fd5fc4aa96"
+   }
+  },
+  {
+   "name": "restore_a_parent_after_its_children_were_removed",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ],
+        [
+         50,
+         100,
+         40,
+         null
+        ],
+        [
+         60,
+         100,
+         50,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "c1"
+      ],
+      "reason": "user"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-4",
+     "type": "RESTORE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 4,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_id": "s1"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        10,
+        100,
+        0,
+        null
+       ],
+       [
+        20,
+        100,
+        10,
+        null
+       ],
+       [
+        30,
+        100,
+        20,
+        null
+       ],
+       [
+        40,
+        100,
+        30,
+        null
+       ],
+       [
+        50,
+        100,
+        40,
+        null
+       ],
+       [
+        60,
+        100,
+        50,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1",
+     "op-2",
+     "op-3",
+     "op-4"
+    ],
+    "redo": [],
+    "op_hashes": [
+     "99e73cd6dff2b53ff1a0d5e4073582b289cd3b963d42d7cd6cd2a5501b1f39f2",
+     "6733143542031cc5721b5b533a4042029cb98b76185cfc00ec6100b8a4f2c7c0",
+     "57b6a6028dd9645ceaec18e2ca62bebadc784ccbf548882568b9a28296dff62d",
+     "623a864bd6d1527d4fd9e76f1443e3bc0165e967d2939a9956d5c4a5ab15f81e"
+    ],
+    "chain_hash": "2786fc57363f4c6c1649893c3bfa726ed5f4c822a2e5b705d713c329b31cda95",
+    "visible_hash": "c98ffc2f084a788c78e3843891732779645b1d01f7bc429e3ec1008cce5c04de",
+    "full_hash": "537d36b7507ec29fd5a1857c131083a3b38c402bccf2a8a701a152f47e552c0e"
+   }
+  },
+  {
+   "name": "undo_above_the_pin_is_allowed",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1,
+         100,
+         0,
+         null
+        ],
+        [
+         2,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s2",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         3,
+         100,
+         0,
+         null
+        ],
+        [
+         4,
+         100,
+         10,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    }
+   ],
+   "pin_index": 1,
+   "expect": {
+    "visible": [
+     {
+      "id": "s1",
+      "points": [
+       [
+        1,
+        100,
+        0,
+        null
+       ],
+       [
+        2,
+        100,
+        10,
+        null
+       ]
+      ]
+     }
+    ],
+    "undo": [
+     "op-1"
+    ],
+    "redo": [
+     "op-2"
+    ],
+    "op_hashes": [
+     "6a94b020ed0a12020cf3fce1af3982eb8f863c57ab15bce0c8bf1d66a0ad4336",
+     "b99f6da2e6271aef6e078f41aa0471f55a268db1479a2093d5d09b525c2b5b85",
+     "bdaa3795ab394e56ed48467ef19cd1c4e7e5e37049897a89d33cceffd6f1ada7"
+    ],
+    "chain_hash": "b986725d22920b172cd4682a199975c8938875554652c2b06e6fa68ea32c5844",
+    "visible_hash": "81cac57359a63e5ccb0e50a10329e6d578993c4560ff02edd95f285ef8239d8a",
+    "full_hash": "e2c7a5b09de713bddb4fd9da8eb1fd150023c5d992b089a6d28045943a33b418"
+   }
+  }
+ ]
+}

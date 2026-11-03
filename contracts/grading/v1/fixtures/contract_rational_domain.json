@@ -1,0 +1,23 @@
+{
+  "kind": "contract",
+  "version": 1,
+  "exercise_type": "expression.rational_simplify",
+  "statement": "Simplify (x^2 - 1)/(x - 1).",
+  "variable_domains": { "x": { "set": "real", "excluded": ["1"] } },
+  "assumptions": ["x is real and x is not 1"],
+  "expected": { "kind": "expression", "values": ["x + 1"] },
+  "accepted_forms": ["x + 1", "1 + x"],
+  "required_format": "collected",
+  "rounding": null,
+  "units": null,
+  "valid_transformations": ["factorise the numerator and cancel a factor that is not zero on the domain"],
+  "invalid_transformations": ["cancel terms rather than factors", "substitute a value excluded from the domain"],
+  "alternative_methods": "any_valid_chain",
+  "partial_credit": { "max_score": 2, "rules": [] },
+  "unsupported": ["polynomial long division written out in full"],
+  "examples": [
+    { "answer": "x + 1", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+    { "answer": "(x^2 - 1)/(x - 1)", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 0 },
+    { "answer": "x - 1", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "INVALID_TRANSFORMATION", "score": 0 }
+  ]
+}

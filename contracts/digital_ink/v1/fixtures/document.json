@@ -1,0 +1,350 @@
+{
+ "page": {
+  "page_id": "page-1",
+  "width": 2100,
+  "height": 2970
+ },
+ "cases": [
+  {
+   "name": "two_pages",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "d-2",
+     "type": "CREATE_PAGE",
+     "page_id": "b",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2970,
+      "height": 2100,
+      "orientation": "landscape",
+      "background": "blank"
+     }
+    }
+   ],
+   "live": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "name": "deleted_page_is_hidden_not_forgotten",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "d-2",
+     "type": "CREATE_PAGE",
+     "page_id": "b",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2970,
+      "height": 2100,
+      "orientation": "landscape",
+      "background": "blank"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "d-3",
+     "type": "DELETE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {}
+    }
+   ],
+   "live": [
+    "b"
+   ]
+  },
+  {
+   "name": "duplicate_page",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "d-2",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    }
+   ],
+   "at": 1,
+   "code": "DUPLICATE_PAGE"
+  },
+  {
+   "name": "recreate_a_deleted_page",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "d-2",
+     "type": "DELETE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {}
+    },
+    {
+     "v": 1,
+     "op_id": "d-3",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    }
+   ],
+   "at": 2,
+   "code": "DUPLICATE_PAGE"
+  },
+  {
+   "name": "orientation_disagrees_with_size",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "landscape",
+      "background": "blank"
+     }
+    }
+   ],
+   "at": 0,
+   "code": "INVALID_PAGE"
+  },
+  {
+   "name": "delete_unknown_page",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "DELETE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {}
+    }
+   ],
+   "at": 0,
+   "code": "UNKNOWN_PAGE"
+  },
+  {
+   "name": "delete_twice",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "d-2",
+     "type": "DELETE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {}
+    },
+    {
+     "v": 1,
+     "op_id": "d-3",
+     "type": "DELETE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {}
+    }
+   ],
+   "at": 2,
+   "code": "PAGE_DELETED"
+  },
+  {
+   "name": "ink_in_the_document_journal",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "UNDO",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "x"
+     }
+    }
+   ],
+   "at": 0,
+   "code": "WRONG_JOURNAL"
+  },
+  {
+   "name": "delete_page_with_a_payload",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "d-1",
+     "type": "CREATE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "d-2",
+     "type": "DELETE_PAGE",
+     "page_id": "a",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "x": 1
+     }
+    }
+   ],
+   "at": 1,
+   "code": "INVALID_SHAPE"
+  }
+ ]
+}

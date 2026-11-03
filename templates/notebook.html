@@ -1,0 +1,77 @@
+{% load static %}<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notebook prototype</title>
+  <link rel="stylesheet" href="{% static 'css/notebook.css' %}">
+</head>
+<body>
+  <p class="notice" role="note">
+    Technical prototype. No login and no handwriting recognition. Use adult test writing only, never a child's.
+  </p>
+
+  <main id="app" data-notebook-id="{{ notebook_id }}" data-csrf-token="{{ csrf_token }}">
+    <div class="toolbar" role="toolbar" aria-label="Writing tools">
+      <div class="group">
+        <button type="button" id="tool-pen" aria-pressed="true">Pen</button>
+        <button type="button" id="tool-eraser" aria-pressed="false">Eraser</button>
+        <button type="button" id="tool-hand" aria-pressed="false">Move page</button>
+      </div>
+      <div class="group">
+        <button type="button" id="undo" disabled>Undo</button>
+        <button type="button" id="redo" disabled>Redo</button>
+        <button type="button" id="save">Save page</button>
+      </div>
+      <div class="group">
+        <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+        <span id="zoom-label" aria-live="polite">100%</span>
+        <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+      </div>
+      <div class="group">
+        <button type="button" id="page-prev" aria-label="Previous page" disabled>‹</button>
+        <span id="page-label" aria-live="polite">Page 1 of 1</span>
+        <button type="button" id="page-next" aria-label="Next page" disabled>›</button>
+        <label class="visually-hidden" for="page-orientation">New page orientation</label>
+        <select id="page-orientation">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select>
+        <button type="button" id="page-new">New page</button>
+        <button type="button" id="page-delete" disabled>Delete page</button>
+      </div>
+      <span id="sync-status" role="status" data-state="starting">Starting…</span>
+      <button type="button" id="sync-retry" hidden>Retry now</button>
+    </div>
+
+    <div id="delete-confirm" class="panel" role="alert" hidden>
+      <p>Delete this page? It will disappear from the notebook, but its history stays on the server.</p>
+      <button type="button" id="delete-yes">Delete page</button>
+      <button type="button" id="delete-no">Keep page</button>
+    </div>
+
+    <div id="conflict" class="panel panel-warning" role="alert" hidden>
+      <p id="conflict-text"></p>
+      <button type="button" id="conflict-copy">Keep my version as a new page</button>
+      <button type="button" id="conflict-discard">Use the other version</button>
+    </div>
+
+    <div id="page-viewport">
+      <canvas id="page" data-tool="pen" aria-label="Notebook page. Write here with a stylus or mouse."></canvas>
+    </div>
+
+    <section class="server-view" aria-labelledby="server-heading">
+      <h2 id="server-heading">Page rebuilt by the server</h2>
+      <p id="compare-status" data-state="none">Save the page to compare it.</p>
+      <dl>
+        <dt>Revision</dt><dd id="revision">–</dd>
+        <dt>Browser hash</dt><dd id="client-hash" class="hash">–</dd>
+        <dt>Server hash</dt><dd id="server-hash" class="hash">–</dd>
+      </dl>
+      <img id="server-render" alt="Page drawn by Python from the saved strokes" hidden>
+    </section>
+  </main>
+
+  <script type="module" src="{% static 'js/ink/notebook.js' %}"></script>
+</body>
+</html>

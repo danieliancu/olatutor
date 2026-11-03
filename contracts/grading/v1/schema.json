@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tutor.grading.v1",
+  "title": "Grading contract and grading result v1",
+  "description": "Not implemented yet: this is the contract for Milestone 4. Each fixture is either a `contract` or a `result`.",
+  "oneOf": [{ "$ref": "#/$defs/contract" }, { "$ref": "#/$defs/result" }],
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_.-]{1,64}$" },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "version", "exercise_type", "statement", "variable_domains", "assumptions", "expected", "accepted_forms", "required_format", "rounding", "units", "valid_transformations", "invalid_transformations", "alternative_methods", "partial_credit", "unsupported", "examples"],
+      "properties": {
+        "kind": { "const": "contract" },
+        "version": { "const": 1 },
+        "exercise_type": { "$ref": "#/$defs/id" },
+        "statement": { "type": "string", "minLength": 1 },
+        "variable_domains": {
+          "description": "Symbol name to domain, with excluded values kept explicit.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["set", "excluded"],
+            "properties": {
+              "set": { "enum": ["integer", "rational", "real"] },
+              "excluded": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "assumptions": { "type": "array", "items": { "type": "string" } },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "values"],
+          "properties": {
+            "kind": { "enum": ["value", "expression", "solution_set"] },
+            "values": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          }
+        },
+        "accepted_forms": { "type": "array", "items": { "type": "string" } },
+        "required_format": { "enum": ["any", "integer", "lowest_terms", "mixed_number", "decimal_places", "collected", "expanded", "complete_solution_set"] },
+        "rounding": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["places", "mode"],
+              "properties": {
+                "places": { "type": "integer", "minimum": 0 },
+                "mode": { "enum": ["half_up"] }
+              }
+            }
+          ]
+        },
+        "units": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["expected", "accepted", "required"],
+              "properties": {
+                "expected": { "type": "string" },
+                "accepted": { "type": "array", "items": { "type": "string" } },
+                "required": { "type": "boolean" }
+              }
+            }
+          ]
+        },
+        "valid_transformations": { "type": "array", "items": { "type": "string" } },
+        "invalid_transformations": { "type": "array", "items": { "type": "string" } },
+        "alternative_methods": { "enum": ["any_valid_chain", "listed_only", "not_applicable"] },
+        "partial_credit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["max_score", "rules"],
+          "properties": {
+            "max_score": { "type": "integer", "minimum": 1 },
+            "rules": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["when", "score"],
+                "properties": { "when": { "type": "string" }, "score": { "type": "integer", "minimum": 0 } }
+              }
+            }
+          }
+        },
+        "unsupported": {
+          "description": "Cases that must return UNSUPPORTED and require review rather than being guessed.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "examples": {
+          "description": "Expected behaviour for Milestone 4 to pass. Mathematical status and task compliance stay separate.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["answer", "mathematical_status", "task_compliance", "error_class", "score"],
+            "properties": {
+              "answer": { "type": "string" },
+              "mathematical_status": { "$ref": "#/$defs/mathematical_status" },
+              "task_compliance": { "$ref": "#/$defs/task_compliance" },
+              "error_class": { "$ref": "#/$defs/error_class" },
+              "score": { "type": ["integer", "null"], "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "mathematical_status": { "enum": ["CORRECT", "INCORRECT", "INCOMPLETE", "UNSUPPORTED", "UNDETERMINED"] },
+    "task_compliance": { "enum": ["COMPLIANT", "NON_COMPLIANT", "NOT_EVALUATED"] },
+    "error_class": {
+      "enum": [null, "ARITHMETIC_ERROR", "INVALID_TRANSFORMATION", "UNJUSTIFIED_TRANSFORMATION", "INCOMPLETE_REASONING", "DOMAIN_VIOLATION", "EXTRANEOUS_SOLUTION", "MISSING_SOLUTION", "FORMAT_REQUIREMENT", "ROUNDING_ERROR", "UNIT_ERROR", "UNSUPPORTED_METHOD", "UNREADABLE"]
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recognition", "mathematical"],
+      "properties": {
+        "recognition": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "mathematical": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "version", "page_revision", "exercise_ref", "solution_ref", "step_ref", "mathematical_status", "task_compliance", "error_class", "uncertainty", "score", "grading_version", "explanation_code", "requires_review", "source_node_ids"],
+      "properties": {
+        "kind": { "const": "result" },
+        "version": { "const": 1 },
+        "page_revision": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["page_id", "revision", "visible_hash"],
+          "properties": {
+            "page_id": { "type": "string" },
+            "revision": { "type": "integer", "minimum": 1 },
+            "visible_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+          }
+        },
+        "exercise_ref": { "type": "string" },
+        "solution_ref": { "type": ["string", "null"] },
+        "step_ref": { "type": ["string", "null"] },
+        "mathematical_status": { "$ref": "#/$defs/mathematical_status" },
+        "task_compliance": { "$ref": "#/$defs/task_compliance" },
+        "error_class": { "$ref": "#/$defs/error_class" },
+        "uncertainty": { "$ref": "#/$defs/uncertainty" },
+        "score": { "type": ["integer", "null"], "minimum": 0 },
+        "grading_version": { "type": "string", "minLength": 1 },
+        "explanation_code": { "type": ["string", "null"] },
+        "requires_review": { "type": "boolean" },
+        "source_node_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: Tutor Device API
+  version: 0.1.0-draft
+  description: >
+    DRAFT. NOT IMPLEMENTED. No endpoint here exists on the server. It records the intended shape so
+    that the Digital Ink contract can be checked against firmware needs in Milestone 2. Credential
+    details are deliberately left open until pairing is designed against the real board.
+paths:
+  /api/v1/device/pair/:
+    post:
+      summary: Exchange a short-lived parent-issued pairing code for a device credential
+      security: []
+      responses:
+        "201": { description: Device-scoped credential issued }
+        "400": { description: Invalid or expired code }
+  /api/v1/device/me/:
+    get:
+      summary: Device identity, hardware profile, protocol version and assigned student
+      responses:
+        "200": { description: Device record }
+        "401": { description: Credential invalid, rotated or revoked }
+  /api/v1/notebooks/{notebook_id}/pages/{page_id}/ops/:
+    post:
+      summary: Append a batch to a page journal, with the same semantics as the browser client
+      description: See docs/DIGITAL_INK_SPEC.md section 10. Operations are Digital Ink v1.
+      parameters:
+        - { name: notebook_id, in: path, required: true, schema: { type: string } }
+        - { name: page_id, in: path, required: true, schema: { type: string } }
+      responses:
+        "200": { description: Batch accepted, or an idempotent replay of an accepted batch }
+        "409": { description: "BASE_CONFLICT, SEQUENCE_GAP or IDEMPOTENCY_MISMATCH" }
+        "422": { description: Contract violation; the batch is quarantined and never lost }
+components:
+  securitySchemes:
+    deviceCredential:
+      type: http
+      scheme: bearer
+      description: Device-scoped, revocable and rotatable. Grants no family administration access.
+security:
+  - deviceCredential: []

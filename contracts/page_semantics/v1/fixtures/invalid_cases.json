@@ -1,0 +1,51 @@
+{
+  "description": "Each case starts from valid_ambiguous_crossed_out.json, applies `patch` (top-level keys replaced) and must be rejected with `rule`.",
+  "cases": [
+    {
+      "name": "edge_points_to_a_missing_node",
+      "rule": "EDGE_ENDPOINT",
+      "patch": { "edges": [ { "id": "e1", "type": "REFERENCES", "from": "old-answer", "to": "ghost", "confidence": { "value": 0.5, "calibrated": false, "calibration_id": null }, "hypothesis_group": null } ] }
+    },
+    {
+      "name": "hypothesis_masses_exceed_one",
+      "rule": "HYPOTHESIS_MASS",
+      "patch": { "hypothesis_groups": [ { "id": "where-does-it-belong", "question": "Which problem?", "resolved": false, "unresolved_mass": 0.5 } ] }
+    },
+    {
+      "name": "edge_uses_an_undeclared_group",
+      "rule": "HYPOTHESIS_GROUP",
+      "patch": { "hypothesis_groups": [] }
+    },
+    {
+      "name": "calibrated_score_without_a_calibration",
+      "rule": "SCHEMA",
+      "patch": { "edges": [ { "id": "e1", "type": "REFERENCES", "from": "old-answer", "to": "new-answer", "confidence": { "value": 0.5, "calibrated": true, "calibration_id": null }, "hypothesis_group": null } ], "hypothesis_groups": [] }
+    },
+    {
+      "name": "reading_order_cycle",
+      "rule": "READING_ORDER_CYCLE",
+      "patch": { "edges": [
+        { "id": "r1", "type": "NEXT_IN_READING_ORDER", "from": "old-answer", "to": "new-answer", "confidence": { "value": 0.5, "calibrated": false, "calibration_id": null }, "hypothesis_group": null },
+        { "id": "r2", "type": "NEXT_IN_READING_ORDER", "from": "new-answer", "to": "old-answer", "confidence": { "value": 0.5, "calibrated": false, "calibration_id": null }, "hypothesis_group": null }
+      ], "hypothesis_groups": [] }
+    },
+    {
+      "name": "handwriting_node_without_provenance",
+      "rule": "PROVENANCE",
+      "patch": { "nodes": [ { "id": "orphan", "type": "Expression", "layer": "student", "bbox": null, "stroke_ids": [], "source_content_id": null, "candidates": [], "attributes": {} } ], "edges": [], "hypothesis_groups": [] }
+    },
+    {
+      "name": "exercise_text_claimed_as_student_ink",
+      "rule": "LAYER_SEPARATION",
+      "patch": { "nodes": [ { "id": "mixed", "type": "Problem", "layer": "exercise", "bbox": null, "stroke_ids": ["s99"], "source_content_id": "exercise-1", "candidates": [], "attributes": {} } ], "edges": [], "hypothesis_groups": [] }
+    },
+    {
+      "name": "duplicate_node_id",
+      "rule": "DUPLICATE_ID",
+      "patch": { "nodes": [
+        { "id": "same", "type": "Region", "layer": "student", "bbox": null, "stroke_ids": ["s1"], "source_content_id": null, "candidates": [], "attributes": {} },
+        { "id": "same", "type": "Region", "layer": "student", "bbox": null, "stroke_ids": ["s2"], "source_content_id": null, "candidates": [], "attributes": {} }
+      ], "edges": [], "hypothesis_groups": [] }
+    }
+  ]
+}

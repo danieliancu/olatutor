@@ -1,0 +1,535 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tutor.digital_ink.v1.operation",
+  "title": "Digital Ink v1 operation",
+  "description": "Structural rules only. Semantic rules live in docs/DIGITAL_INK_SPEC.md and are enforced by replay.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "v",
+    "op_id",
+    "type",
+    "page_id",
+    "writer_id",
+    "epoch",
+    "client_seq",
+    "origin",
+    "client_time_ms",
+    "payload"
+  ],
+  "properties": {
+    "v": {
+      "const": 1
+    },
+    "op_id": {
+      "$ref": "#/$defs/id"
+    },
+    "type": {
+      "enum": [
+        "ADD_STROKE",
+        "REMOVE_STROKE",
+        "ERASE_SEGMENT",
+        "RESTORE_STROKE",
+        "UNDO",
+        "REDO",
+        "CREATE_PAGE",
+        "DELETE_PAGE"
+      ]
+    },
+    "page_id": {
+      "$ref": "#/$defs/id"
+    },
+    "writer_id": {
+      "$ref": "#/$defs/id"
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "client_seq": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "origin": {
+      "enum": [
+        "user",
+        "system"
+      ]
+    },
+    "client_time_ms": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ADD_STROKE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/add_stroke"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "REMOVE_STROKE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/remove_stroke"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ERASE_SEGMENT"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/erase_segment"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "UNDO"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/history_target"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "REDO"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/history_target"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "CREATE_PAGE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/create_page"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "RESTORE_STROKE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/restore_stroke"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "DELETE_PAGE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "#/$defs/delete_page"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,64}$"
+    },
+    "point": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1024
+        }
+      ],
+      "items": false,
+      "minItems": 4
+    },
+    "pair": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer"
+        }
+      ],
+      "items": false,
+      "minItems": 2
+    },
+    "add_stroke": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stroke"
+      ],
+      "properties": {
+        "stroke": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "layer",
+            "style",
+            "source",
+            "capture",
+            "points",
+            "raw_points"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/id"
+            },
+            "layer": {
+              "const": "student"
+            },
+            "style": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "width",
+                "color"
+              ],
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 200
+                },
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-f]{6}$"
+                }
+              }
+            },
+            "source": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "input",
+                "device"
+              ],
+              "properties": {
+                "input": {
+                  "enum": [
+                    "pen",
+                    "touch",
+                    "mouse",
+                    "simulated"
+                  ]
+                },
+                "device": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "maxLength": 128
+                }
+              }
+            },
+            "capture": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "matrix_micro",
+                "viewport",
+                "dpr_milli",
+                "rotation_deg"
+              ],
+              "properties": {
+                "matrix_micro": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "minItems": 6,
+                  "maxItems": 6
+                },
+                "viewport": {
+                  "$ref": "#/$defs/pair"
+                },
+                "dpr_milli": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "rotation_deg": {
+                  "enum": [
+                    0,
+                    90,
+                    180,
+                    270
+                  ]
+                }
+              }
+            },
+            "points": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/point"
+              },
+              "minItems": 1,
+              "maxItems": 20000
+            },
+            "raw_points": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/pair"
+                  },
+                  "maxItems": 20000
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "remove_stroke": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stroke_ids",
+        "reason"
+      ],
+      "properties": {
+        "stroke_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 2000
+        },
+        "reason": {
+          "enum": [
+            "user",
+            "palm"
+          ]
+        }
+      }
+    },
+    "erase_segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "eraser"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "parent_id",
+              "children"
+            ],
+            "properties": {
+              "parent_id": {
+                "$ref": "#/$defs/id"
+              },
+              "children": {
+                "type": "array",
+                "maxItems": 20000,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "start",
+                    "end"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$ref": "#/$defs/id"
+                    },
+                    "start": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "end": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "eraser": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "radius",
+            "path"
+          ],
+          "properties": {
+            "radius": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/pair"
+              },
+              "maxItems": 20000
+            }
+          }
+        }
+      }
+    },
+    "history_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_op_id"
+      ],
+      "properties": {
+        "target_op_id": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "create_page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height",
+        "orientation",
+        "background"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 20000
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 20000
+        },
+        "orientation": {
+          "enum": [
+            "portrait",
+            "landscape"
+          ]
+        },
+        "background": {
+          "const": "blank"
+        }
+      }
+    },
+    "restore_stroke": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stroke_id"
+      ],
+      "properties": {
+        "stroke_id": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "delete_page": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {}
+    }
+  }
+}

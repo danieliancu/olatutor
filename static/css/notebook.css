@@ -1,0 +1,205 @@
+:root {
+  --ink: #1b2430;
+  --muted: #5a6675;
+  --line: #cfd6df;
+  --surface: #f2f4f7;
+  --accent: #1f5fbf;
+  --ok: #17693a;
+  --warn: #8a5300;
+  --bad: #a3231f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font: 16px/1.4 system-ui, sans-serif;
+}
+
+.notice {
+  margin: 0;
+  padding: 4px 16px;
+  background: #fff4d6;
+  font-size: 14px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  padding: 8px 0;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+button,
+select {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  min-width: 44px;
+  cursor: pointer;
+}
+
+button[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+button:disabled {
+  color: #9aa4b1;
+  cursor: default;
+}
+
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#sync-status {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+#sync-status[data-state="synced"] {
+  color: var(--ok);
+}
+
+#sync-status[data-state="offline"],
+#sync-status[data-state="retrying"],
+#sync-status[data-state="paused"] {
+  color: var(--warn);
+}
+
+#sync-status[data-state="conflict"],
+#sync-status[data-state="storage-error"] {
+  color: var(--bad);
+  font-weight: 600;
+}
+
+.panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.panel p {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+.panel-warning {
+  border-color: var(--bad);
+}
+
+/* The page scrolls here, so the tools stay in reach on a small screen. */
+#page-viewport {
+  height: calc(100dvh - 150px);
+  min-height: 280px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  background: #dfe3e8;
+}
+
+#page {
+  display: block;
+  background: #fff;
+  /* The page owns every pointer gesture; a browser pan would cancel the stroke being written. */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+}
+
+#page[data-tool="hand"] {
+  cursor: grab;
+}
+
+.server-view {
+  margin-top: 24px;
+}
+
+.server-view h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+#compare-status[data-state="match"] {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+#compare-status[data-state="mismatch"],
+#compare-status[data-state="error"] {
+  color: var(--bad);
+  font-weight: 600;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 2px 12px;
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+dd {
+  margin: 0;
+}
+
+.hash {
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, monospace;
+}
+
+#server-render {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+}

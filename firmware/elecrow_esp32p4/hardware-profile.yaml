@@ -1,0 +1,147 @@
+# Hardware profile, version 1. Status per field:
+#   documented = stated by ELECROW, not measured by us
+#   measured   = measured on a physical board, with an entry in measurements_log
+#   unknown    = not stated, or the sources disagree
+# Nothing here has been verified on a physical board. Do not write firmware against a `documented`
+# value that the milestone depends on without measuring it first.
+profile_version: 1
+model: ELECROW CrowPanel Advanced 10.1-inch ESP32-P4 HMI (DHE04310D)
+sources:
+  docs: https://media-cdn.elecrow.com/wiki/CrowPanel_Advanced_10.1inch_ESP32-P4_HMI_AI_Display_1024x600_IPS.html
+  product: https://www.elecrow.com/crowpanel-advanced-10-1inch-esp32-p4-hmi-ai-display-1024x600-ips-touch-screen-wifi-6.html
+  repo: https://github.com/Elecrow-RD/CrowPanel-Advanced-10.1inch-ESP32-P4-HMI-AI-Display-1024x600-IPS-Touch-Screen
+  checked_on: "2026-11-02"
+measurements_log: null
+fields:
+  pcb_revision:
+    value: null
+    status: unknown
+    source: repo
+    note: V1.0, V1.1 and V1.2 (latest) exist. The revision of the purchased board must be read from the board itself.
+  mcu:
+    value: ESP32-P4NRW32, RISC-V dual-core up to 400 MHz
+    status: documented
+    source: product
+  psram:
+    value: 32 MB
+    status: documented
+    source: product
+  flash:
+    value: 16 MB
+    status: documented
+    source: product
+  display_panel:
+    value: 10.1 inch, 1024x600, IPS, 400 cd/m2 typical
+    status: documented
+    source: product
+  display_controller:
+    value: null
+    status: unknown
+    source: null
+    note: Not stated on the documentation page. Look in the schematic and the BSP.
+  mipi_dsi_configuration:
+    value: DSI with pins on IO34-IO40
+    status: documented
+    source: docs
+    note: Lane count and timings not stated. The page labels several lanes DSI_DATAN0, which looks like a typo.
+  touch_controller:
+    value: GT911, capacitive
+    status: documented
+    source: docs
+  touch_i2c_address:
+    value: 0x5D if INT is low during reset, 0x14 if high
+    status: documented
+    source: docs
+  touch_pins:
+    value: SCL IO46, SDA IO45, INT IO42, RESET IO40
+    status: documented
+    source: docs
+    note: IO40 also appears in the DSI pin list on the same page. Check the schematic before trusting it.
+  touch_points:
+    value: 5
+    status: documented
+    source: repo
+  touch_tracking_id_behaviour:
+    value: null
+    status: unknown
+    source: null
+    note: Measure with palm-first and stylus-first contact.
+  touch_metadata:
+    value: null
+    status: unknown
+    source: null
+    note: Whether contact size is available and what it means must be measured. Do not treat any strength value as stylus pressure.
+  touch_sampling_rate:
+    value: null
+    status: unknown
+    source: null
+  stylus:
+    value: null
+    status: unknown
+    source: null
+    note: Not stated and not in the package list. A capacitive panel needs a conductive-tip stylus.
+  orientation_support:
+    value: null
+    status: unknown
+    source: null
+    note: Portrait must be done in software; measure the rendering cost with LVGL.
+  wireless_module:
+    value: ESP32-C6-MINI-1, Wi-Fi 6 on 2.4 GHz, Bluetooth 5.3
+    status: documented
+    source: product
+    note: Preprogrammed module that cannot be reprogrammed through the P4. V1.1 and V1.2 changed the related pins.
+  microphone:
+    value: PDM microphone, MIC_MCLK IO24, MIC_SD2 IO26
+    status: documented
+    source: docs
+    note: The product page calls it both a single microphone and an array.
+  audio_output:
+    value: NS4168 with a PH2.0-2P speaker connector, LRCLK 21, BCLK 22, SDATA 23, CTRL 30
+    status: documented
+    source: docs
+  speaker_included:
+    value: null
+    status: unknown
+    source: product
+    note: A speaker is named in the documentation but is absent from the package list. Assume an external speaker is needed until the box is opened.
+  power_consumption:
+    value: 8-10 W with the screen active
+    status: documented
+    source: docs
+    note: Not measured. Power from USB alone may blank the screen.
+  power_input:
+    value: 5 V, 2 A
+    status: documented
+    source: product
+  usb_interfaces:
+    value: Dual USB-C, one UART debug through CH341, one USB 2.0 device
+    status: documented
+    source: product
+  sd_card:
+    value: Holder present, SD1_CMD IO44, SD1_SCK IO43, SD1_D0 IO39
+    status: documented
+    source: docs
+  battery:
+    value: PH2.0-2P with charging circuit, 3.7-4.2 V, 430 mA maximum input
+    status: documented
+    source: docs
+    note: No battery in the package list. At 8-10 W, runtime and charging need measuring before any untethered claim.
+  esp_idf_version:
+    value: 5.4.2 or higher
+    status: documented
+    source: repo
+    note: The README says Arduino IDE is also supported; PlatformIO is not.
+  lvgl_version:
+    value: 9.1 for V1.2, 8.3 for V1.0 and V1.1
+    status: documented
+    source: repo
+  bsp:
+    value: Example and factory source code in the vendor repository
+    status: documented
+    source: repo
+    note: No BSP is named as such. Licence not visible on the repository page; check before reusing any code.
+  weight_and_size:
+    value: 248x147 mm, 960 g
+    status: documented
+    source: product
+    note: The weight looks high for a child's hand-held device and may include packaging. Measure it.

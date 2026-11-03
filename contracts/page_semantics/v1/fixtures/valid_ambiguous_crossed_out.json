@@ -1,0 +1,23 @@
+{
+  "schema": "tutor.page_semantics",
+  "version": 1,
+  "source": { "notebook_id": "nb1", "page_id": "p1", "revision": 4, "seq": 60, "visible_hash": "2222222222222222222222222222222222222222222222222222222222222222" },
+  "producer": { "recogniser": "hand-authored-fixture", "model_version": "none", "processed_at": "2026-11-02T12:00:00Z", "parameters": {} },
+  "nodes": [
+    { "id": "problem-a", "type": "Problem", "layer": "exercise", "bbox": [100, 100, 800, 120], "stroke_ids": [], "source_content_id": "exercise-1", "candidates": [], "attributes": {} },
+    { "id": "problem-b", "type": "Problem", "layer": "exercise", "bbox": [1200, 100, 800, 120], "stroke_ids": [], "source_content_id": "exercise-2", "candidates": [], "attributes": {} },
+    { "id": "region-middle", "type": "Region", "layer": "student", "bbox": [900, 600, 300, 200], "stroke_ids": ["s10", "s11"], "source_content_id": null, "candidates": [ { "text": "7", "confidence": { "value": 0.6, "calibrated": false, "calibration_id": null } }, { "text": "1", "confidence": { "value": 0.35, "calibrated": false, "calibration_id": null } } ], "attributes": {} },
+    { "id": "old-answer", "type": "Expression", "layer": "student", "bbox": [100, 900, 200, 100], "stroke_ids": ["s12"], "source_content_id": null, "candidates": [ { "text": "5", "confidence": { "value": 0.9, "calibrated": false, "calibration_id": null } } ], "attributes": {} },
+    { "id": "cross-mark", "type": "Correction", "layer": "student_revision", "bbox": [90, 890, 220, 120], "stroke_ids": ["s13"], "source_content_id": null, "candidates": [], "attributes": {} },
+    { "id": "new-answer", "type": "Expression", "layer": "student_revision", "bbox": [400, 900, 200, 100], "stroke_ids": ["s14"], "source_content_id": null, "candidates": [ { "text": "6", "confidence": { "value": 0.92, "calibrated": false, "calibration_id": null } } ], "attributes": {} }
+  ],
+  "edges": [
+    { "id": "alt-a", "type": "BELONGS_TO_PROBLEM", "from": "region-middle", "to": "problem-a", "confidence": { "value": 0.72, "calibrated": false, "calibration_id": null }, "hypothesis_group": "where-does-it-belong" },
+    { "id": "alt-b", "type": "BELONGS_TO_PROBLEM", "from": "region-middle", "to": "problem-b", "confidence": { "value": 0.22, "calibrated": false, "calibration_id": null }, "hypothesis_group": "where-does-it-belong" },
+    { "id": "e-cross", "type": "CROSSES_OUT", "from": "cross-mark", "to": "old-answer", "confidence": { "value": 0.85, "calibrated": false, "calibration_id": null }, "hypothesis_group": null },
+    { "id": "e-replace", "type": "REPLACES", "from": "new-answer", "to": "old-answer", "confidence": { "value": 0.8, "calibrated": false, "calibration_id": null }, "hypothesis_group": null }
+  ],
+  "hypothesis_groups": [
+    { "id": "where-does-it-belong", "question": "Which problem does the region between the columns belong to?", "resolved": false, "unresolved_mass": 0.06 }
+  ]
+}

@@ -1,0 +1,3271 @@
+{
+ "page": {
+  "page_id": "page-1",
+  "width": 2100,
+  "height": 2970
+ },
+ "cases": [
+  {
+   "name": "float_coordinate",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         1.5,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "FLOAT_NOT_ALLOWED"
+  },
+  {
+   "name": "integer_above_safe_range",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         9007199254740992,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INT_OUT_OF_RANGE"
+  },
+  {
+   "name": "lone_surrogate_in_text",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": "bad\ud800"
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_STRING"
+  },
+  {
+   "name": "nul_character_in_text",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": "bad\u0000"
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_STRING"
+  },
+  {
+   "name": "unknown_version",
+   "ops": [
+    {
+     "v": 2,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "UNKNOWN_VERSION"
+  },
+  {
+   "name": "navigation_is_never_journaled",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "CHANGE_PAGE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "x"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "UNSUPPORTED_OP"
+  },
+  {
+   "name": "missing_pressure_is_not_null",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_SHAPE"
+  },
+  {
+   "name": "extra_field",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     },
+     "extra": 1
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_SHAPE"
+  },
+  {
+   "name": "non_ascii_id",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-\u00e9",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_SHAPE"
+  },
+  {
+   "name": "no_points",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_SHAPE"
+  },
+  {
+   "name": "first_timestamp_not_zero",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         5,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_TIMING"
+  },
+  {
+   "name": "time_goes_backwards",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         5,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_TIMING"
+  },
+  {
+   "name": "point_outside_page",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         3000,
+         100,
+         0,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "POINT_OUT_OF_PAGE"
+  },
+  {
+   "name": "wrong_page",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-2",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "WRONG_PAGE"
+  },
+  {
+   "name": "create_page_in_page_journal",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "CREATE_PAGE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "width": 2100,
+      "height": 2970,
+      "orientation": "portrait",
+      "background": "blank"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "WRONG_JOURNAL"
+  },
+  {
+   "name": "duplicate_stroke_id",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "DUPLICATE_STROKE"
+  },
+  {
+   "name": "duplicate_op_id",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s2",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "DUPLICATE_OP"
+  },
+  {
+   "name": "remove_unknown_stroke",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "nope"
+      ],
+      "reason": "user"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "UNKNOWN_STROKE"
+  },
+  {
+   "name": "remove_twice",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "user"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "user"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 2,
+   "code": "STROKE_NOT_ACTIVE"
+  },
+  {
+   "name": "overlapping_ranges",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 2
+         },
+         {
+          "id": "c2",
+          "start": 2,
+          "end": 3
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "INVALID_RANGE"
+  },
+  {
+   "name": "descending_ranges",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 2,
+          "end": 3
+         },
+         {
+          "id": "c2",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "INVALID_RANGE"
+  },
+  {
+   "name": "range_beyond_parent",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 9
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "INVALID_RANGE"
+  },
+  {
+   "name": "child_range_outside_a_split_parent",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "c1",
+        "children": [
+         {
+          "id": "g1",
+          "start": 2,
+          "end": 3
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 2,
+   "code": "INVALID_RANGE"
+  },
+  {
+   "name": "erase_changing_nothing",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 3
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "ERASE_NOOP"
+  },
+  {
+   "name": "child_id_collision",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "s1",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "DUPLICATE_STROKE"
+  },
+  {
+   "name": "undo_on_empty_stack",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-1"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "NOT_STACK_TOP"
+  },
+  {
+   "name": "undo_not_stack_top",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s2",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-1"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 2,
+   "code": "NOT_STACK_TOP"
+  },
+  {
+   "name": "redo_without_undo",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-1"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "NOT_STACK_TOP"
+  },
+  {
+   "name": "undo_at_or_below_the_pin",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-1"
+     }
+    }
+   ],
+   "pin_index": 1,
+   "at": 1,
+   "code": "PINNED"
+  },
+  {
+   "name": "palm_removal_below_the_pin",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "system",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "palm"
+     }
+    }
+   ],
+   "pin_index": 1,
+   "at": 1,
+   "code": "PINNED"
+  },
+  {
+   "name": "palm_removal_of_a_split_stroke",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "system",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "c1"
+      ],
+      "reason": "palm"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 2,
+   "code": "SYSTEM_REMOVE_INVALID"
+  },
+  {
+   "name": "palm_removal_with_a_later_op_on_history",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "user"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "UNDO",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "target_op_id": "op-2"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-4",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 4,
+     "origin": "system",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "s1"
+      ],
+      "reason": "palm"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 3,
+   "code": "SYSTEM_REMOVE_INVALID"
+  },
+  {
+   "name": "restore_unknown_stroke",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "RESTORE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_id": "nope"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "UNKNOWN_STROKE"
+  },
+  {
+   "name": "restore_an_active_stroke",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "RESTORE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_id": "s1"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 1,
+   "code": "STROKE_ALREADY_ACTIVE"
+  },
+  {
+   "name": "restore_a_parent_with_live_children",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "ERASE_SEGMENT",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "items": [
+       {
+        "parent_id": "s1",
+        "children": [
+         {
+          "id": "c1",
+          "start": 0,
+          "end": 1
+         }
+        ]
+       }
+      ],
+      "eraser": {
+       "radius": 20,
+       "path": [
+        [
+         100,
+         100
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "RESTORE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_id": "s1"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 2,
+   "code": "ACTIVE_DESCENDANTS"
+  },
+  {
+   "name": "restore_a_palm_contact",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "p",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-2",
+     "type": "REMOVE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 2,
+     "origin": "system",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_ids": [
+       "p"
+      ],
+      "reason": "palm"
+     }
+    },
+    {
+     "v": 1,
+     "op_id": "op-3",
+     "type": "RESTORE_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 3,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {
+      "stroke_id": "p"
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 2,
+   "code": "RESTORE_BLOCKED"
+  },
+  {
+   "name": "delete_page_in_page_journal",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "DELETE_PAGE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "user",
+     "client_time_ms": null,
+     "payload": {}
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "WRONG_JOURNAL"
+  },
+  {
+   "name": "system_cannot_draw",
+   "ops": [
+    {
+     "v": 1,
+     "op_id": "op-1",
+     "type": "ADD_STROKE",
+     "page_id": "page-1",
+     "writer_id": "writer-a",
+     "epoch": 1,
+     "client_seq": 1,
+     "origin": "system",
+     "client_time_ms": null,
+     "payload": {
+      "stroke": {
+       "id": "s1",
+       "layer": "student",
+       "style": {
+        "width": 8,
+        "color": "#112233"
+       },
+       "source": {
+        "input": "simulated",
+        "device": null
+       },
+       "capture": {
+        "matrix_micro": [
+         2000000,
+         0,
+         0,
+         2000000,
+         0,
+         0
+        ],
+        "viewport": [
+         1050,
+         1485
+        ],
+        "dpr_milli": 1000,
+        "rotation_deg": 0
+       },
+       "points": [
+        [
+         10,
+         100,
+         0,
+         null
+        ],
+        [
+         20,
+         100,
+         10,
+         null
+        ],
+        [
+         30,
+         100,
+         20,
+         null
+        ],
+        [
+         40,
+         100,
+         30,
+         null
+        ]
+       ],
+       "raw_points": null
+      }
+     }
+    }
+   ],
+   "pin_index": 0,
+   "at": 0,
+   "code": "INVALID_ORIGIN"
+  }
+ ]
+}

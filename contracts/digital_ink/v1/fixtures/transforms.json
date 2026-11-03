@@ -1,0 +1,46 @@
+{
+  "description": "Hand-computed physical-to-logical cases. Implementations may differ by +/-1 unit (DIGITAL_INK_SPEC section 3).",
+  "tolerance": 1,
+  "cases": [
+    {
+      "name": "dpr1_fit_width",
+      "params": { "viewport": [1050, 1485], "dpr": 1, "rotation_deg": 0, "page_width": 2100, "scroll": [0, 0], "zoom": 1 },
+      "points": [ { "in": [0, 0], "out": [0, 0] }, { "in": [100, 50], "out": [200, 100] }, { "in": [1050, 1485], "out": [2100, 2970] } ]
+    },
+    {
+      "name": "dpr2_same_physical_page",
+      "params": { "viewport": [2100, 2970], "dpr": 2, "rotation_deg": 0, "page_width": 2100, "scroll": [0, 0], "zoom": 1 },
+      "points": [ { "in": [200, 100], "out": [200, 100] }, { "in": [2100, 2970], "out": [2100, 2970] } ]
+    },
+    {
+      "name": "fractional_dpr",
+      "params": { "viewport": [1575, 2228], "dpr": 1.5, "rotation_deg": 0, "page_width": 2100, "scroll": [0, 0], "zoom": 1 },
+      "points": [ { "in": [150, 75], "out": [200, 100] } ]
+    },
+    {
+      "name": "elecrow_panel_landscape_fit_width",
+      "params": { "viewport": [1024, 600], "dpr": 1, "rotation_deg": 0, "page_width": 2100, "scroll": [0, 0], "zoom": 1 },
+      "points": [ { "in": [1024, 0], "out": [2100, 0] }, { "in": [512, 300], "out": [1050, 615] } ]
+    },
+    {
+      "name": "rotation_90_panel_portrait",
+      "params": { "viewport": [1024, 600], "dpr": 1, "rotation_deg": 90, "page_width": 2100, "scroll": [0, 0], "zoom": 1 },
+      "points": [ { "in": [1024, 0], "out": [0, 0] }, { "in": [1024, 600], "out": [2100, 0] }, { "in": [0, 0], "out": [0, 3584] } ]
+    },
+    {
+      "name": "rotation_180",
+      "params": { "viewport": [1050, 1485], "dpr": 1, "rotation_deg": 180, "page_width": 2100, "scroll": [0, 0], "zoom": 1 },
+      "points": [ { "in": [1050, 1485], "out": [0, 0] }, { "in": [0, 0], "out": [2100, 2970] } ]
+    },
+    {
+      "name": "rotation_270",
+      "params": { "viewport": [1024, 600], "dpr": 1, "rotation_deg": 270, "page_width": 2100, "scroll": [0, 0], "zoom": 1 },
+      "points": [ { "in": [0, 600], "out": [0, 0] }, { "in": [0, 0], "out": [2100, 0] }, { "in": [1024, 600], "out": [0, 3584] } ]
+    },
+    {
+      "name": "zoom_and_scroll",
+      "params": { "viewport": [1050, 1485], "dpr": 1, "rotation_deg": 0, "page_width": 2100, "scroll": [500, 1000], "zoom": 2 },
+      "points": [ { "in": [0, 0], "out": [500, 1000] }, { "in": [100, 50], "out": [600, 1050] } ]
+    }
+  ]
+}

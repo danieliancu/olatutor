@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tutor.page_semantics.v1.graph",
+  "title": "Page Semantic Graph v1",
+  "description": "What the system believes is on one exact page revision. Immutable. Not implemented yet: this is the contract for Milestone 3. Cross-reference rules are in scripts/validate_contracts.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "source", "producer", "nodes", "edges", "hypothesis_groups"],
+  "properties": {
+    "schema": { "const": "tutor.page_semantics" },
+    "version": { "const": 1 },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["notebook_id", "page_id", "revision", "seq", "visible_hash"],
+      "properties": {
+        "notebook_id": { "$ref": "#/$defs/id" },
+        "page_id": { "$ref": "#/$defs/id" },
+        "revision": { "type": "integer", "minimum": 1 },
+        "seq": { "type": "integer", "minimum": 0 },
+        "visible_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recogniser", "model_version", "processed_at", "parameters"],
+      "properties": {
+        "recogniser": { "type": "string", "minLength": 1 },
+        "model_version": { "type": "string", "minLength": 1 },
+        "processed_at": { "type": "string", "format": "date-time" },
+        "parameters": { "type": "object" }
+      }
+    },
+    "nodes": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+    "edges": { "type": "array", "items": { "$ref": "#/$defs/edge" } },
+    "hypothesis_groups": { "type": "array", "items": { "$ref": "#/$defs/hypothesis_group" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$" },
+    "confidence": {
+      "description": "`calibrated` false means a raw score that automation must not act on. See docs/PAGE_SEMANTICS.md.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "calibrated", "calibration_id"],
+      "properties": {
+        "value": { "type": "number", "minimum": 0, "maximum": 1 },
+        "calibrated": { "type": "boolean" },
+        "calibration_id": { "type": ["string", "null"] }
+      },
+      "if": { "properties": { "calibrated": { "const": true } } },
+      "then": { "properties": { "calibration_id": { "type": "string", "minLength": 1 } } }
+    },
+    "bbox": {
+      "description": "x, y, width, height in logical page units.",
+      "type": "array",
+      "items": { "type": "integer", "minimum": 0 },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "confidence"],
+      "properties": {
+        "text": { "type": "string" },
+        "confidence": { "$ref": "#/$defs/confidence" }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "layer", "bbox", "stroke_ids", "source_content_id", "candidates", "attributes"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": {
+          "enum": ["Page", "Region", "ContentBlock", "Expression", "Symbol", "TextBlock", "Diagram", "Problem", "Solution", "SolutionStep", "Correction", "RecognitionCandidate", "Annotation"]
+        },
+        "layer": {
+          "enum": ["background", "exercise", "student", "student_revision", "recognition", "grading", "tutor", "parent"]
+        },
+        "bbox": { "oneOf": [{ "$ref": "#/$defs/bbox" }, { "type": "null" }] },
+        "stroke_ids": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+        "source_content_id": { "type": ["string", "null"] },
+        "candidates": { "type": "array", "items": { "$ref": "#/$defs/candidate" } },
+        "attributes": { "type": "object" }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "from", "to", "confidence", "hypothesis_group"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": {
+          "enum": ["CONTAINS", "NEXT_IN_READING_ORDER", "BELONGS_TO_PROBLEM", "FOLLOWS_STEP", "DERIVED_FROM", "REFERENCES", "CROSSES_OUT", "REPLACES", "ANNOTATES", "SPATIALLY_RELATED_TO"]
+        },
+        "from": { "$ref": "#/$defs/id" },
+        "to": { "$ref": "#/$defs/id" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "hypothesis_group": { "oneOf": [{ "$ref": "#/$defs/id" }, { "type": "null" }] }
+      }
+    },
+    "hypothesis_group": {
+      "description": "Mutually exclusive alternatives. `resolved` stays false until evidence selects one; `unresolved_mass` is the remaining uncertainty.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "question", "resolved", "unresolved_mass"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "question": { "type": "string", "minLength": 1 },
+        "resolved": { "type": "boolean" },
+        "unresolved_mass": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

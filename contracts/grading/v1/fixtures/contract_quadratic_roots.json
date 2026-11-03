@@ -1,0 +1,23 @@
+{
+  "kind": "contract",
+  "version": 1,
+  "exercise_type": "equation.quadratic_square",
+  "statement": "Solve x^2 = 9.",
+  "variable_domains": { "x": { "set": "real", "excluded": [] } },
+  "assumptions": ["x is real"],
+  "expected": { "kind": "solution_set", "values": ["3", "-3"] },
+  "accepted_forms": ["x = 3 or x = -3", "x = +-3", "{3, -3}"],
+  "required_format": "complete_solution_set",
+  "rounding": null,
+  "units": null,
+  "valid_transformations": ["take both square roots", "factorise as (x-3)(x+3) = 0"],
+  "invalid_transformations": ["take only the positive square root and stop"],
+  "alternative_methods": "any_valid_chain",
+  "partial_credit": { "max_score": 2, "rules": [ { "when": "one correct root and no extraneous root", "score": 1 } ] },
+  "unsupported": ["complex solutions", "graphical methods"],
+  "examples": [
+    { "answer": "x = 3 or x = -3", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+    { "answer": "x = 3", "mathematical_status": "INCOMPLETE", "task_compliance": "NON_COMPLIANT", "error_class": "MISSING_SOLUTION", "score": 1 },
+    { "answer": "x = 3 or x = 4", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "EXTRANEOUS_SOLUTION", "score": 0 }
+  ]
+}

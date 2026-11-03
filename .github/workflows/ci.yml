@@ -1,0 +1,27 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: ci-only-not-a-secret
+      POSTGRES_PASSWORD: ci-only-not-a-secret
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: docker compose build web
+      - name: Start database
+        run: docker compose up -d db
+      - name: Lint
+        run: docker compose run --rm --no-deps web sh -c "ruff check . && ruff format --check ."
+      - name: Types
+        run: docker compose run --rm --no-deps web mypy .
+      - name: Contracts
+        run: docker compose run --rm --no-deps web python scripts/validate_contracts.py
+      - name: Python tests
+        run: docker compose run --rm web pytest
+      - name: JS conformance
+        run: docker compose --profile js run --rm js
+      - name: Browser end-to-end
+        run: docker compose --profile e2e run --rm --build e2e

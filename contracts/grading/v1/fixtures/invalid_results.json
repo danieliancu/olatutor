@@ -1,0 +1,30 @@
+{
+  "description": "Each case starts from result_review_required.json, replaces the keys in `patch` and must be rejected with `rule`.",
+  "cases": [
+    {
+      "name": "unreadable_work_marked_wrong",
+      "rule": "UNCERTAINTY_IS_NOT_WRONG",
+      "patch": { "mathematical_status": "INCORRECT", "score": 0, "requires_review": false }
+    },
+    {
+      "name": "undetermined_without_review",
+      "rule": "REVIEW_REQUIRED",
+      "patch": { "requires_review": false }
+    },
+    {
+      "name": "single_confidence_value",
+      "rule": "SCHEMA",
+      "patch": { "uncertainty": { "confidence": 0.8 } }
+    },
+    {
+      "name": "unsupported_given_a_score",
+      "rule": "UNDETERMINED_HAS_NO_SCORE",
+      "patch": { "mathematical_status": "UNSUPPORTED", "error_class": "UNSUPPORTED_METHOD", "score": 1 }
+    },
+    {
+      "name": "not_pinned_to_a_revision",
+      "rule": "SCHEMA",
+      "patch": { "page_revision": { "page_id": "p1" } }
+    }
+  ]
+}
