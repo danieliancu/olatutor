@@ -1,10 +1,10 @@
 # Starea proiectului
 
-**Ultima actualizare:** 2026-11-03, după adăugarea site-ului de prezentare.
+**Ultima actualizare:** 2026-11-04, după Milestone 4A.
 
 Acesta e fișierul de urmărit. Se actualizează la finalul fiecărui milestone și ori de câte ori se schimbă o decizie sau un blocaj. Dovezile detaliate sunt în [PROGRESS.md](PROGRESS.md).
 
-**Pe scurt:** caietul digital funcționează în browser, cu mai multe pagini, dar a fost testat doar cu input simulat. Nu există încă recunoaștere de scris, notare, conturi sau firmware. Prototipul nu are autentificare și trebuie să rămână local.
+**Pe scurt:** caietul digital funcționează în browser, cu mai multe pagini, și verifică aritmetica pe care o **tastezi de mână** pentru o revizie fixată a paginii. Calculatorul nu îți citește scrisul. Totul a fost testat doar cu input simulat. Nu există încă recunoaștere de scris, conturi sau firmware. Prototipul nu are autentificare și trebuie să rămână local.
 
 Stări folosite: **PASS**, **PARTIAL**, **BLOCKED**, **FAIL**, plus **Neînceput**.
 
@@ -16,14 +16,15 @@ Stări folosite: **PASS**, **PARTIAL**, **BLOCKED**, **FAIL**, plus **Neînceput
 | 1 | Caiet funcțional | **PASS** (input simulat) | – |
 | 2 | Fezabilitate hardware (placa ELECROW) | **BLOCKED** | Placa nu e disponibilă |
 | 3 | Recunoaștere și semantica paginii | Neînceput | Pentru rezultate oneste: scriitori adulți care consimt |
-| 4 | Matematică și feedback pe pagină | Neînceput, **recomandat următorul** | – |
+| 4A | Motor aritmetic și demonstrație cu transcriere manuală (etapă din Milestone 4) | **PASS** (input simulat, text tastat) | – |
+| 4 | Matematică și feedback pe pagină, complet | **PARTIAL** | Lipsesc recunoașterea, ancorarea pe pagină, review-ul real, algebra și unitățile |
 | 5 | Familii și pilot | Neînceput | Pentru date reale despre copii: DPIA și revizie juridică |
 | 6 | Materiale de la părinți și voce | Neînceput | – |
 | 7 | AI controlat și comercializare | Neînceput | – |
 
 ## Ce ai de făcut sau de decis
 
-- [ ] **Alegi următorul milestone.** Recomandarea mea e Milestone 4.
+- [ ] **Alegi următoarea etapă.** Recomandarea mea e Etapa B (Milestone 3, recunoaștere), care cere scriitori adulți. Înainte, un pas mic: un profesor să citească regulile de feedback și exercițiile.
 - [x] **Numele „olátutor”** e confirmat. Footerul folosește firma și adresa de contact de la olacompanion.
 - [ ] **Pagini legale pentru site** (confidențialitate, termeni): nu există încă. Cele de la olacompanion sunt scrise pentru ceas, așa că nu le-am legat.
 - [ ] **Testezi cu un stilou real pe o tabletă,** după pașii din [README](../README.md). Durează puțin și poate schimba designul.
@@ -46,30 +47,33 @@ Stări folosite: **PASS**, **PARTIAL**, **BLOCKED**, **FAIL**, plus **Neînceput
 - [x] Revizii imutabile, verificate cu hash-uri
 - [x] Reconstrucția paginii în Python, identică cu cea din browser
 - [x] Site de prezentare la `/`, în stilul olacompanion, cu funcțiile marcate clar ca existente sau planificate
+- [x] Motor aritmetic exact: întregi, fracții, zecimale, numere mixte, paranteze, rotunjire (nu tot KS2; vezi [matricea de suport](MATH_SUPPORT_MATRIX_4A.md))
+- [x] Verificarea pașilor, cu metode diferite acceptate și feedback fără a da rezultatul
+- [x] Demonstrație în caiet, etichetată ca mod de dezvoltare: **Verify**, apoi tastezi pașii și îi confirmi
 
 ## Ce nu există încă
 
 - [ ] Recunoașterea scrisului și înțelegerea paginii
-- [ ] Notarea matematică și feedbackul pe pagină
+- [ ] Algebră, ecuații, unități, probleme cu text, feedback ancorat pe pagină și review real
 - [ ] Conturi, login, familii, profiluri de copii
 - [ ] Dashboard pentru părinți și teme atribuite
 - [ ] Curriculum și generarea de exerciții
 - [ ] Încărcarea de materiale, vocea, AI, abonamente
 - [ ] Firmware pentru placă
 
-Pentru recunoaștere, notare și dispozitiv există doar contractele sau metodologia, nu și implementarea.
+Pentru recunoaștere și dispozitiv există doar contractele sau metodologia, nu și implementarea. Notarea există numai pentru aritmetică, pe text tastat.
 
 ## Ultimele rezultate ale testelor
 
 | Suită | Rezultat |
 |---|---|
-| Python (`pytest`) | 176 trecute, 2 sărite intenționat |
+| Python (`pytest`) | 509 trecute, 2 sărite intenționat |
 | Conformitate JS (`node --test`) | 110 trecute, 0 eșuate |
-| Browser: Chromium, Firefox, WebKit | 81 trecute, 0 eșuate, în două rulări complete la rând |
-| Validare contracte | 76 verificări, 0 eșecuri |
+| Browser: Chromium, Firefox, WebKit | 138 trecute, 0 eșuate, în două rulări complete la rând |
+| Validare contracte | 97 verificări, 0 eșecuri |
 | `ruff` și `mypy` | fără erori |
 
-Testele din browser folosesc input simulat. Ele verifică datele și logica, nu confortul scrisului.
+Testele din browser folosesc input simulat. Ele verifică datele și logica, nu confortul scrisului. Dintre 16 defecte introduse intenționat, 14 au fost prinse direct, iar pentru celelalte 2 am întărit testele, care acum le prind.
 
 ## Neverificat sau blocat
 
@@ -81,11 +85,14 @@ Testele din browser folosesc input simulat. Ele verifică datele și logica, nu 
 | Respingerea palmei | **BLOCKED** | Placa fizică |
 | Toate datele despre placă, citite doar din documentație | **BLOCKED** | Placa fizică |
 | Acuratețea pe scrisul copiilor | **BLOCKED** | Pilot aprobat, după DPIA |
-| CI | **FAIL** la prima rulare, la pasul Lint. Cauza probabilă, reprodusă local: containerul nu poate scrie cache în checkout. Remedierea e în `ci.yml`, neverificată pe GitHub | Push și o rulare nouă |
+| Dacă feedbackul și punctajele ajută un copil | Neverificat | Citire de către un profesor, apoi pilot aprobat |
+| Timpul unei cereri complete (HTTP și bază de date) | Nemăsurat | Măsurat doar motorul, pe PC-ul de dezvoltare |
+| Milestone 4A pe CI | Neverificat | Push; pasul de browser pica deja înainte de această etapă |
+| CI | **FAIL** în rularea din 2026-11-03: Lint, tipuri, contracte, Python și JS trec, dar pasul Browser end-to-end pică cu cod de ieșire 1. Local aceleași teste trec. Cauza nu e cunoscută, logurile cer autentificare | Citirea logurilor (`gh auth login`) |
 
 ## Riscuri principale
 
-Lista completă, cu 22 de riscuri, e în [RISK_REGISTER.md](RISK_REGISTER.md).
+Lista completă, cu 25 de riscuri, e în [RISK_REGISTER.md](RISK_REGISTER.md).
 
 1. **Stiloul pe ecran capacitiv.** Panoul s-ar putea să nu deosebească stiloul pasiv de palmă. Poate impune altă placă, dar serverul și contractul nu depind de ea.
 2. **Scrisul copiilor.** Nu știm dacă un model local îl poate citi suficient de bine.
@@ -96,6 +103,10 @@ Lista completă, cu 22 de riscuri, e în [RISK_REGISTER.md](RISK_REGISTER.md).
 
 ## Limite cunoscute
 
+- Textul tastat nu este comparat cu ce e scris pe pagină.
+- **Verify** fixează o revizie, deci undo sub acel punct e blocat, ca la **Save page**.
+- Un rând cu valoarea corectă este acceptat, chiar dacă raționamentul din spate nu poate fi verificat.
+- `3/4 ÷ 2/5` trebuie tastat cu paranteze. Fără ele, motorul cere clarificare.
 - Copierea unei versiuni într-o pagină nouă, la conflict, păstrează ce se vede, nu și istoricul.
 - Modificările de pe alt dispozitiv apar doar după reîncărcare.
 - Pe puncte rare, radiera poate părea mai lată decât este.
@@ -108,7 +119,7 @@ Lista completă, cu 22 de riscuri, e în [RISK_REGISTER.md](RISK_REGISTER.md).
 docker compose up -d --build --wait web
 ```
 
-Apoi deschizi <http://localhost:8000/notebook/>. Pașii compleți și comenzile de test sunt în [README](../README.md).
+Apoi deschizi <http://localhost:8000/notebook/>. Alegi un exercițiu, de exemplu „Simplify a fraction”, scrii pe pagină, apeși **Verify**, tastezi `2/4` și apeși **Confirm and check**. Vezi că valoarea e corectă, dar fracția nu e simplificată. Apoi corectezi în `1/2`. Pașii compleți și comenzile de test sunt în [README](../README.md).
 
 ## Istoric
 
@@ -119,3 +130,4 @@ Apoi deschizi <http://localhost:8000/notebook/>. Pașii compleți și comenzile 
 | 2026-11-02 | Milestone 1 încheiat: caiet cu mai multe pagini, pe trei motoare de browser |
 | 2026-11-03 | Primul commit și legarea la GitHub |
 | 2026-11-03 | Site de prezentare adăugat, fără conturi și fără dashboard |
+| 2026-11-04 | Milestone 4A încheiat: motor aritmetic și demonstrație cu transcriere manuală. Milestone 4 rămâne PARTIAL |

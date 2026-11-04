@@ -17,6 +17,7 @@ CONTRACTS = ROOT / "contracts"
 HANDWRITING_LAYERS = {"student", "student_revision"}
 HANDWRITING_TYPES = {"Expression", "Symbol", "TextBlock", "Diagram", "SolutionStep", "Correction"}
 UNDETERMINED_STATUSES = {"UNSUPPORTED", "UNDETERMINED"}
+MANUAL_LAYER = "manual_transcription"
 
 
 def load_json(path: Path) -> Any:
@@ -29,8 +30,34 @@ def validator(path: Path) -> Draft202012Validator:
     return Draft202012Validator(schema)
 
 
+def provenance_rule_violation(graph: dict[str, Any]) -> str | None:
+    """Page Semantics v2 only: manual text is never presented as ink or as a scored reading."""
+    manual = graph["producer"]["kind"] == "manual_transcription"
+    if manual and graph["hypothesis_groups"]:
+        return "MANUAL_PRODUCER"
+    for node in graph["nodes"]:
+        if manual and node["layer"] in HANDWRITING_LAYERS:
+            return "MANUAL_PRODUCER"
+        if node["layer"] == MANUAL_LAYER:
+            if not manual:
+                return "MANUAL_PRODUCER"
+            if node["stroke_ids"] or node["bbox"] is not None:
+                return "MANUAL_NOT_INK"
+    scores = [
+        candidate["confidence"] for node in graph["nodes"] for candidate in node["candidates"]
+    ]
+    scores += [edge["confidence"] for edge in graph["edges"]]
+    if any((score is None) != manual for score in scores):
+        return "CONFIDENCE_ORIGIN"
+    return None
+
+
 def graph_rule_violation(graph: dict[str, Any]) -> str | None:
     """Cross-reference rules that JSON Schema cannot express. Returns the first broken rule."""
+    if graph["version"] == 2:
+        broken = provenance_rule_violation(graph)
+        if broken:
+            return broken
     node_ids = [node["id"] for node in graph["nodes"]]
     if len(set(node_ids)) != len(node_ids):
         return "DUPLICATE_ID"
@@ -91,6 +118,8 @@ def result_rule_violation(result: dict[str, Any]) -> str | None:
             return "UNDETERMINED_HAS_NO_SCORE"
         if not result["requires_review"]:
             return "REVIEW_REQUIRED"
+    if result["task_compliance"] == "COMPLIANT" and result["mathematical_status"] != "CORRECT":
+        return "COMPLIANCE_REQUIRES_CORRECT"
     return None
 
 
@@ -137,8 +166,36 @@ def main() -> int:
         if got != case["rule"]:
             fail(f"semantics {case['name']}: expected {case['rule']}, got {got}")
 
+    semantic_v2 = validator(CONTRACTS / "page_semantics/v2/schema.json")
+    semantic_v2_dir = CONTRACTS / "page_semantics/v2/fixtures"
+    base_manual = load_json(semantic_v2_dir / "valid_manual_transcription.json")
+    checked += 1
+    for error in semantic_v2.iter_errors(base_manual):
+        fail(f"valid_manual_transcription.json: {error.json_path}: {error.message}")
+    if graph_rule_violation(base_manual):
+        fail("valid_manual_transcription.json: valid fixture broke a rule")
+    for case in load_json(semantic_v2_dir / "invalid_cases.json")["cases"]:
+        checked += 1
+        graph = {**base_manual, **case["patch"]}
+        schema_broken = next(semantic_v2.iter_errors(graph), None) is not None
+        got = "SCHEMA" if schema_broken else graph_rule_violation(graph)
+        if got != case["rule"]:
+            fail(f"semantics v2 {case['name']}: expected {case['rule']}, got {got}")
+
     grading = validator(CONTRACTS / "grading/v1/schema.json")
     grading_dir = CONTRACTS / "grading/v1/fixtures"
+    catalog_schema = validator(CONTRACTS / "grading/v1/exercise_catalog.schema.json")
+    catalog = load_json(ROOT / "apps/grading/exercises/catalog_v1.json")
+    checked += 1
+    for error in catalog_schema.iter_errors(catalog):
+        fail(f"catalog_v1.json: {error.json_path}: {error.message}")
+    for item in catalog["exercises"]:
+        checked += 1
+        for error in grading.iter_errors(item["contract"]):
+            fail(f"catalog_v1.json {item['exercise_id']}: {error.json_path}: {error.message}")
+        problem = check_contract_examples(item["contract"])
+        if problem:
+            fail(f"catalog_v1.json {item['exercise_id']}: {problem}")
     for path in sorted(grading_dir.glob("contract_*.json")):
         checked += 1
         contract = load_json(path)

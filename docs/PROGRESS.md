@@ -1,5 +1,97 @@
 # Progress
 
+## Milestone 4A: deterministic arithmetic with manual transcription
+
+**Date:** 2026-11-04. **Base:** `main` at `3abd2ac`. **Environment:** Docker Desktop on Windows 10, 4 CPUs seen, Python 3.13.18, Django 5.2.18, PostgreSQL 17, Playwright 1.64.1, Node 22.
+
+| Status | Value |
+|---|---|
+| **Milestone 4A** | **PASS** against its criteria in `ACCEPTANCE_CRITERIA.md`, on simulated pointer input and typed, manually confirmed text |
+| **Milestone 4 as a whole** | **PARTIAL.** Missing: recognition input, spatial anchoring, a real review path, algebra and the symbolic work it would need, units, and any review by a teacher |
+
+This shows that the arithmetic and the flow work. It says **nothing about recognition**, and nothing about whether the feedback helps a child.
+
+### Criteria
+
+| # | Criterion | Status | Evidence |
+|---|---|---|---|
+| 1 | Safe parsing and exact arithmetic | PASS | Allowlisted parser. A source scan rejects `eval`, `exec`, `compile`, `sympify`, `parse_expr`, `float` and float literals. Values match `Fraction` references built separately by the tests, across generated expressions and hand-worked tables |
+| 2 | Correctness separate from compliance | PASS | `Simplify 2/4` with `2/4`: CORRECT, NON_COMPLIANT, FORMAT_REQUIREMENT, score 1. All 5 examples of the unmodified fixture pass |
+| 3 | Step chains and alternative methods | PASS | 6 methods for 12 × 15 and 3 for 1/2 + 1/3 accepted, with no text comparison. Line verdicts carry no score, and the solution verdict does |
+| 4 | Deterministic, evidence-backed feedback | PASS | Property test for determinism. A bare wrong answer to a longer sum has no claimed cause. Tests reject texts holding an answer or speculative wording. **Usefulness to a child is unverified** |
+| 5 | Manual flow tied to a verified revision | PASS, simulated input | Browser tests on all three engines: write, Verify, pin checked by server replay, confirm, result for that revision. Graph has manual provenance, with no strokes, geometry or confidence |
+| 6 | No regression in saving and sync | PASS | All 81 earlier browser tests and all earlier Python and JS tests still pass. Digital Ink contract, fixtures, Python ink core and `core.js` have no diff |
+| 7 | Unsupported, ambiguous and over-budget input | PASS | No score, review flag, never INCORRECT. The next request works. Bad requests get controlled errors |
+
+Also verified: idempotent replay, refusal of a reused key with another payload, one record under 6 concurrent duplicates, one correction under 4 concurrent attempts, records append-only by database trigger, CSRF, cross-page references, both feature gates, and results for old revisions kept as history.
+
+### Tests executed (final code)
+
+| Suite | Baseline before this work | Final |
+|---|---|---|
+| `pytest` | 181 passed, 2 skipped | **509 passed, 2 skipped** (the same 2 intentional skips) |
+| `node --test` (JS conformance) | 110 passed | **110 passed, 0 failed** |
+| Playwright on Chromium, Firefox and WebKit, simulated pointer input | 81 passed | **138 passed, 0 failed**, in two consecutive full runs (46 tests on each engine) |
+| `validate_contracts.py` | 76 checks | **97 checks, 0 failures** |
+| `ruff check`, `ruff format --check`, `mypy` | clean | clean |
+
+The last wording change in `verify.js` was made as the first of the two browser runs began, so only the second run is certain to include it. No test depends on that text.
+
+**GitHub CI was not run,** as nothing was pushed. Its browser step was already failing on 2026-11-03, for an unknown reason, so CI stays unverified for this work.
+
+**Test sensitivity check.** 16 defects were deliberately introduced into a throwaway copy, one at a time. 14 were caught at once. Two survived, and both showed **weak tests rather than faulty code**: nothing exercised one ambiguity branch, such as `(1)/(2)/3`, and the leak test searched for `11` when stored values look like `11/1`. Both tests were strengthened, and both defects are now caught. This is a sample, not a full mutation test.
+
+**Regression found and fixed.** The first full browser run failed 3 tests out of 129: the new panel pushed the bottom of the writing surface off the screen, so **Move page** could not be dragged. The layout was fixed instead of the test, and a new test checks the surface stays on screen at 800×1200, 1024×600 and 1280×800.
+
+### Performance (the engine alone, on the development PC)
+
+2,000 runs per case, in one process, on one machine. Times are in milliseconds. **This excludes HTTP and the database, which were not measured,** and it is not a production promise.
+
+| Case | p50 | p95 | p99 | Max |
+|---|---|---|---|---|
+| Single answer | 0.05 | 0.10 | 0.83 | 10.8 |
+| Ambiguous input | 0.04 | 0.10 | 10.0 | 14.6 |
+| Typical chain, 3 lines | 0.19 | 0.38 | 10.8 | 11.9 |
+| Fractions, 3 links | 0.22 | 0.43 | 10.7 | 11.9 |
+| Worst case inside the budget: 30 long lines, stops at 512 operations | 39.4 | 92.4 | 104.6 | 161.5 |
+| Over budget: 31 lines | 0.005 | 0.006 | 0.017 | 1.9 |
+
+Corpus and method: `benchmarks/math_engine_latency.py`. The p99 and max values look like scheduling noise inside Docker on Windows, which was not investigated.
+
+### Decisions
+
+- **No SymPy, no Lark and no subprocess** (ADR 0005). This work has no symbolic operations, and the budget bounds its cost. So there is **no process to terminate and no process-termination test**, and **no pre-emptive timeout**. The evidence is the deterministic budget and the worst case above. Any symbolic work must still run in a separate limited process.
+- **Page Semantics v2** for manual provenance (ADR 0006), because v1 would need an invented confidence and stroke IDs. v1 is untouched.
+- **Null uncertainties** mean "not measured" and "not estimated", and never "certain".
+- **`ARITHMETIC_ERROR` is narrow:** one operation or one written number with a different written value. The fixture requires it for `1/3` as an answer to "Simplify 2/4". It means only that the values differ.
+- **Division by zero is INCORRECT with `DOMAIN_VIOLATION`,** because it is certain and not uncertain.
+
+### Fixtures
+
+In 4A: `contract_simplify_fraction` (5 of 5) and `contract_rounding_units` (`2.33`, `2.3`). Outside 4A, and **not passing as written**: `2.33 cm` and `2.33 m` give UNSUPPORTED where the fixture expects CORRECT and INCORRECT with `UNIT_ERROR`. `23.3 mm` does give UNSUPPORTED as expected, though only because no units are read at all. `contract_quadratic_roots` and `contract_rational_domain` are refused at load. No expected result was changed. Details: `MATH_SUPPORT_MATRIX_4A.md`.
+
+### Known issues and limits
+
+- **Typed text is not checked against the ink.** Someone could write one thing and type another. The panel says the computer has not read the writing.
+- **Verify creates a pin,** so undo below that point is blocked, just as with **Save page**.
+- **Equal value is accepted as justified,** so a line reached by faulty reasoning passes if its value is right (R24).
+- **`requires_review` is only a flag.** There is no review queue or reviewer.
+- **Feedback is per line and per solution,** with no position on the page.
+- **`3/4 ÷ 2/5` needs brackets** when typed. Handwritten fractions are unambiguous, so this limit belongs to typing.
+- **The expanded panel pushes the page down** while a result is showing. The page itself is smaller whenever the demo is on, and the layout relies on CSS `:has()`.
+- **The history shows the latest 50 checks,** and the correction link only lasts for the open session: after a reload, a new check is a new record rather than a correction.
+- **A new page not yet on the server logs a 404** when the history loads. It is harmless, and shows as an empty history.
+- **Append-only records need an erasure design** before real data (`SECURITY_PRIVACY.md`).
+- **Still a local prototype:** no authentication, tenancy or rate limit. It is not ready for public access or a pilot.
+
+### Unverified
+
+Whether the feedback and marks help a child or are fair (no teacher has reviewed them). Whether the exercises suit KS2, which is not claimed to be covered. Real stylus and tablets. Whole-request latency. CI.
+
+### Next recommended stage
+
+**Stage B, Milestone 3: recognition and page semantics,** which can replace typing with reading, through the same semantic layer. It needs consented adult writers. A smaller step that needs nobody else first: a teacher's review of `PEDAGOGY_SPEC.md` and the exercise catalogue. **Neither has been started.**
+
 ## Milestone 1: functional notebook
 
 **Date:** 2026-11-02. **Environment:** as Milestone 0, plus Firefox and WebKit through Playwright 1.64.1.

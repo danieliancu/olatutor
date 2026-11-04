@@ -15,4 +15,5 @@ urlpatterns = [
     path("healthz", healthz, name="healthz"),
     path("", include("apps.pages.urls")),
     path("", include("apps.notebooks.urls")),
+    path("", include("apps.grading.urls")),
 ]

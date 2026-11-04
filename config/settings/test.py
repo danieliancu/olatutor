@@ -7,4 +7,5 @@ from .base import *  # noqa: E402, F403
 
 ALLOWED_HOSTS = ["testserver", "localhost"]
 INK_PROTOTYPE_ENABLED = True
+MATH_DEMO_ENABLED = True
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]

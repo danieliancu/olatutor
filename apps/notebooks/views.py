@@ -87,7 +87,8 @@ def new_notebook(request: HttpRequest) -> HttpResponse:
 @require_GET
 @ensure_csrf_cookie
 def notebook(request: HttpRequest, notebook_id: str) -> HttpResponse:
-    return render(request, "notebook.html", {"notebook_id": notebook_id})
+    context = {"notebook_id": notebook_id, "math_demo_enabled": settings.MATH_DEMO_ENABLED}
+    return render(request, "notebook.html", context)
 
 
 @prototype_only

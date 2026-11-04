@@ -26,3 +26,6 @@ Likelihood and impact are judgement calls (L, M, H) from documents and design re
 | R20 | Hash divergence between JS, Python and future C | L | H | Binary canonical form, shared vectors, two implementations already agreeing | C conformance run | 2 |
 | R21 | Erasing looks wider than intended on sparse touch samples, since v1 does not interpolate | M | L | Versioned synthetic end caps if needed | Real-device test | 1, 2 |
 | R22 | The vendor example code licence is unclear | M | M | Check before reuse; otherwise write from public ESP-IDF drivers | Licence review | 2 |
+| R23 | Results from typed transcription are mistaken for what recognition could achieve | M | H | Manual provenance in the schema, a visible label, separate records | Milestone 3 benchmark, kept separate | 3, 4 |
+| R24 | Value equality accepts a line reached by faulty reasoning, because equal value does not show method | M | M | Stated in the feedback and spec; `UNJUSTIFIED_TRANSFORMATION` is not claimed | Teacher review of the rules | 4 |
+| R25 | Feedback wording or partial marks do not help a child, as nobody has reviewed them | M | M | Short fixed texts, no speculation, marks only by declared rule | Teacher review, then an approved pilot | 4, 5 |

@@ -1,9 +1,10 @@
 // Lets an already visited notebook page reopen without a network. Ink data never passes through
 // this cache: the API is left alone, and the journal lives in IndexedDB.
 
-const CACHE = "tutor-shell-v1";
+const CACHE = "tutor-shell-v2";
 const SHELL = [
   "/static/css/notebook.css",
+  "/static/js/grading/verify.js",
   "/static/js/ink/capture.js",
   "/static/js/ink/core.js",
   "/static/js/ink/notebook.js",

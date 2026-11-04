@@ -135,6 +135,48 @@ select:focus-visible {
   border-color: var(--bad);
 }
 
+/* The demonstration sits above the page, so the page gives up that height and stays on screen. */
+#app:has(#math-demo) #page-viewport {
+  height: calc(100dvh - 270px);
+}
+
+#verify-status:empty {
+  display: none;
+}
+
+.verify-block {
+  flex-basis: 100%;
+}
+
+.verify-block[hidden] {
+  display: none;
+}
+
+#verify-steps {
+  display: block;
+  width: 100%;
+  margin: 4px 0 8px;
+  font: inherit;
+}
+
+#verify-result p {
+  margin: 4px 0;
+}
+
+#verify-result p:empty {
+  display: none;
+}
+
+#verify-step-list {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.verify-stale {
+  color: var(--bad);
+  font-weight: 600;
+}
+
 /* The page scrolls here, so the tools stay in reach on a small screen. */
 #page-viewport {
   height: calc(100dvh - 150px);

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tutor.grading.v1.exercise_catalog",
+  "title": "Versioned exercise catalogue",
+  "description": "Wraps unchanged grading v1 contracts with what the arithmetic engine needs. Each `contract` is validated separately against schema.json. Which rules are implemented is checked when the engine loads the catalogue.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "catalog_version", "exercises"],
+  "properties": {
+    "schema": { "const": "tutor.exercise_catalog" },
+    "catalog_version": { "type": "integer", "minimum": 1 },
+    "exercises": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["exercise_id", "exercise_version", "title", "start_expression", "steps_required", "contract"],
+        "properties": {
+          "exercise_id": { "type": "string", "pattern": "^[A-Za-z0-9_.-]{1,64}$" },
+          "exercise_version": { "type": "integer", "minimum": 1 },
+          "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "start_expression": { "type": "string", "minLength": 1, "maxLength": 512 },
+          "steps_required": { "type": "boolean" },
+          "contract": { "type": "object" }
+        }
+      }
+    }
+  }
+}

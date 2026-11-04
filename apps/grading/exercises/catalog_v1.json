@@ -1,0 +1,267 @@
+{
+  "schema": "tutor.exercise_catalog",
+  "catalog_version": 1,
+  "exercises": [
+    {
+      "exercise_id": "ks2.order.add-multiply",
+      "exercise_version": 1,
+      "title": "Order of operations",
+      "start_expression": "3 + 4 × 2",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "arithmetic.order_of_operations",
+        "statement": "Work out 3 + 4 × 2.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["11"] }, "accepted_forms": ["11"],
+        "required_format": "integer", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 2, "rules": [ { "when": "valid steps but no final value", "score": 1 } ] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "11", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "3 + 8 = 11", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "3 + 8", "mathematical_status": "INCOMPLETE", "task_compliance": "NON_COMPLIANT", "error_class": "INCOMPLETE_REASONING", "score": 1 },
+          { "answer": "14", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": null, "score": 0 },
+          { "answer": "7 × 2 = 14", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "INVALID_TRANSFORMATION", "score": 0 },
+          { "answer": "3 + 8 = 12", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ARITHMETIC_ERROR", "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.brackets.add-multiply",
+      "exercise_version": 1,
+      "title": "Brackets",
+      "start_expression": "(3 + 4) × 2",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "arithmetic.brackets",
+        "statement": "Work out (3 + 4) × 2.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["14"] }, "accepted_forms": ["14"],
+        "required_format": "integer", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 1, "rules": [] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "14", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "7 × 2 = 14", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "3 × 2 + 4 × 2 = 6 + 8 = 14", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "11", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": null, "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.multiply.two-digit",
+      "exercise_version": 1,
+      "title": "Multiply and show your working",
+      "start_expression": "12 × 15",
+      "steps_required": true,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "arithmetic.multiply_with_working",
+        "statement": "Work out 12 × 15. Show your working.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["180"] }, "accepted_forms": ["180"],
+        "required_format": "integer", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 3, "rules": [
+          { "when": "valid steps but no final value", "score": 2 },
+          { "when": "correct value but the required steps are missing", "score": 1 }
+        ] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "12 × 10 + 12 × 5 = 120 + 60 = 180", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 3 },
+          { "answer": "15 × 12 = 15 × 10 + 15 × 2 = 150 + 30 = 180", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 3 },
+          { "answer": "120 + 60", "mathematical_status": "INCOMPLETE", "task_compliance": "NON_COMPLIANT", "error_class": "INCOMPLETE_REASONING", "score": 2 },
+          { "answer": "180", "mathematical_status": "INCOMPLETE", "task_compliance": "NON_COMPLIANT", "error_class": "INCOMPLETE_REASONING", "score": 1 },
+          { "answer": "12 × 15 = 180", "mathematical_status": "INCOMPLETE", "task_compliance": "NON_COMPLIANT", "error_class": "INCOMPLETE_REASONING", "score": 1 },
+          { "answer": "12 × 15 = 170", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ARITHMETIC_ERROR", "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.fraction.simplify-2-4",
+      "exercise_version": 1,
+      "title": "Simplify a fraction",
+      "start_expression": "2/4",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "fraction.simplify",
+        "statement": "Simplify 2/4.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["1/2"] }, "accepted_forms": ["1/2"],
+        "required_format": "lowest_terms", "rounding": null, "units": null,
+        "valid_transformations": ["divide numerator and denominator by a common factor"],
+        "invalid_transformations": ["add or subtract the same number from numerator and denominator"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 2, "rules": [ { "when": "value equal but not in lowest terms", "score": 1 } ] },
+        "unsupported": ["answers written in words"],
+        "examples": [
+          { "answer": "1/2", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "2/4", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 1 },
+          { "answer": "0.5", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 1 },
+          { "answer": "1/3", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ARITHMETIC_ERROR", "score": 0 },
+          { "answer": "half", "mathematical_status": "UNSUPPORTED", "task_compliance": "NOT_EVALUATED", "error_class": "UNSUPPORTED_METHOD", "score": null }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.fraction.add-unlike",
+      "exercise_version": 1,
+      "title": "Add fractions",
+      "start_expression": "1/2 + 1/3",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "fraction.add",
+        "statement": "Work out 1/2 + 1/3. Give your answer in its simplest form.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["5/6"] }, "accepted_forms": ["5/6"],
+        "required_format": "lowest_terms", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 2, "rules": [ { "when": "value equal but not in lowest terms", "score": 1 } ] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "5/6", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "3/6 + 2/6 = 5/6", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "6/12 + 4/12 = 10/12 = 5/6", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "10/12", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 1 },
+          { "answer": "2/5", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ARITHMETIC_ERROR", "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.fraction.add-mixed",
+      "exercise_version": 1,
+      "title": "Add with a mixed number",
+      "start_expression": "1 1/2 + 3/4",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "fraction.add_mixed",
+        "statement": "Work out 1 1/2 + 3/4. Give your answer as a mixed number.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["2 1/4"] }, "accepted_forms": ["2 1/4"],
+        "required_format": "mixed_number", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 2, "rules": [ { "when": "value equal but not in the required form", "score": 1 } ] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "2 1/4", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "3/2 + 3/4 = 6/4 + 3/4 = 9/4 = 2 1/4", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 2 },
+          { "answer": "9/4", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 1 },
+          { "answer": "2 2/8", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 1 },
+          { "answer": "1 4/6", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ARITHMETIC_ERROR", "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.fraction.of-whole",
+      "exercise_version": 1,
+      "title": "Multiply a fraction by a whole number",
+      "start_expression": "3/4 × 8",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "fraction.multiply_whole",
+        "statement": "Work out 3/4 × 8.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["6"] }, "accepted_forms": ["6"],
+        "required_format": "integer", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 1, "rules": [] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "6", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "24/4 = 6", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "8 ÷ 4 × 3 = 2 × 3 = 6", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "24/4", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.decimal.add",
+      "exercise_version": 1,
+      "title": "Add decimals",
+      "start_expression": "1.25 + 0.5",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "decimal.add",
+        "statement": "Work out 1.25 + 0.5.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["1.75"] }, "accepted_forms": ["1.75", "1 3/4", "7/4"],
+        "required_format": "any", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 1, "rules": [] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "1.75", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "1.750", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "1 3/4", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "1.30", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ARITHMETIC_ERROR", "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.division.exact",
+      "exercise_version": 1,
+      "title": "Divide",
+      "start_expression": "144 ÷ 12",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "arithmetic.divide",
+        "statement": "Work out 144 ÷ 12.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["12"] }, "accepted_forms": ["12"],
+        "required_format": "integer", "rounding": null, "units": null,
+        "valid_transformations": ["any line with the same exact value"],
+        "invalid_transformations": ["any line with a different exact value"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 1, "rules": [] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "12", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "120 ÷ 12 + 24 ÷ 12 = 10 + 2 = 12", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "72 ÷ 6 = 12", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "11", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ARITHMETIC_ERROR", "score": 0 }
+        ]
+      }
+    },
+    {
+      "exercise_id": "ks2.rounding.divide",
+      "exercise_version": 1,
+      "title": "Divide and round",
+      "start_expression": "7 ÷ 3",
+      "steps_required": false,
+      "contract": {
+        "kind": "contract", "version": 1, "exercise_type": "decimal.round",
+        "statement": "Work out 7 ÷ 3. Give your answer to 2 decimal places.",
+        "variable_domains": {}, "assumptions": [],
+        "expected": { "kind": "value", "values": ["2.33"] }, "accepted_forms": ["2.33"],
+        "required_format": "decimal_places", "rounding": { "places": 2, "mode": "half_up" }, "units": null,
+        "valid_transformations": ["any line with the same exact value", "rounding to the requested places or more"],
+        "invalid_transformations": ["truncate instead of rounding"],
+        "alternative_methods": "any_valid_chain",
+        "partial_credit": { "max_score": 1, "rules": [] },
+        "unsupported": ["words", "units", "letters"],
+        "examples": [
+          { "answer": "2.33", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "7 ÷ 3 ≈ 2.33", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "2 1/3 = 2.333 ≈ 2.33", "mathematical_status": "CORRECT", "task_compliance": "COMPLIANT", "error_class": null, "score": 1 },
+          { "answer": "2.3", "mathematical_status": "INCORRECT", "task_compliance": "NOT_EVALUATED", "error_class": "ROUNDING_ERROR", "score": 0 },
+          { "answer": "2 1/3", "mathematical_status": "CORRECT", "task_compliance": "NON_COMPLIANT", "error_class": "FORMAT_REQUIREMENT", "score": 0 }
+        ]
+      }
+    }
+  ]
+}

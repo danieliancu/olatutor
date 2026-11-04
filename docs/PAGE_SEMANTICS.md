@@ -1,6 +1,6 @@
 # Page semantics, version 1
 
-Status: **contract only, not implemented.** Schema and fixtures: `contracts/page_semantics/v1/`. The implementation is Milestone 3.
+Status: **v1 is a contract only.** Its implementation is Milestone 3. **v2** (`contracts/page_semantics/v2/`) adds honest manual provenance, and only its manual form is produced today, by `apps/grading/semantics.py`. No recogniser exists.
 
 ## Why this layer exists
 
@@ -50,3 +50,13 @@ Alternatives are edges that share a `hypothesis_group`. Their confidence values 
 ## Revision safety
 
 A graph is immutable and tied to one revision and hash. If the child edits the page during recognition, the result stays attached to its original revision. Feedback must not be shown on a different revision without a validated remapping. Recognition caching and changed-region detection are designed in Milestone 3, using revision-aware keys.
+
+## Version 2: manual provenance
+
+ADR 0006 records why v1 cannot represent typed text honestly. v2 adds `producer.kind`, the `manual_transcription` layer and `confidence: null`, which means "no score exists". v1 and its fixtures are unchanged.
+
+A manual graph holds a `Problem` in the exercise layer and a `Solution` and `SolutionStep` nodes in the manual layer, with one candidate each, linked by `BELONGS_TO_PROBLEM`, `CONTAINS` and `FOLLOWS_STEP`. It has no stroke IDs, no geometry, no confidence, no alternatives and no expected answer.
+
+**A manual graph does not claim that the text matches the ink.** It records that a person typed and confirmed the text for that revision. It is not recognition, and is no evidence of recognition accuracy.
+
+Extra rules in `scripts/validate_contracts.py` for v2: `MANUAL_NOT_INK`, `MANUAL_PRODUCER`, `CONFIDENCE_ORIGIN`.

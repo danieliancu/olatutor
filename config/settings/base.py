@@ -19,6 +19,8 @@ ALLOWED_HOSTS: list[str] = []
 
 # The notebook prototype has no authentication. It must stay off outside local development.
 INK_PROTOTYPE_ENABLED = False
+# The manual-transcription maths demonstration. It also needs INK_PROTOTYPE_ENABLED.
+MATH_DEMO_ENABLED = False
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -29,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "apps.accounts",
     "apps.notebooks",
+    "apps.grading",
     "apps.pages",
 ]
 

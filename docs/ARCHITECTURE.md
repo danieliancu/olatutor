@@ -47,4 +47,4 @@ Browser (Canvas + Pointer Events)                 Django + PostgreSQL
 
 ## Deliberately absent
 
-Redis, Celery, DRF and object storage, since there is no workload that needs them yet. Tenancy, login, recognition and grading arrive in their own milestones. See `adr/`.
+Redis, Celery, DRF and object storage, since there is no workload that needs them yet. Tenancy, login and recognition arrive in their own milestones. Grading exists for arithmetic on manual input only (`apps/grading/`, Milestone 4A). See `adr/`.

@@ -17,6 +17,14 @@ Other controls in place:
 - The journal is append-only, enforced by a database trigger on UPDATE (tested). DELETE stays possible for erasure.
 - Secrets come from the environment, and `.env` is git-ignored.
 
+Milestone 4A adds the following:
+
+- `MATH_DEMO_ENABLED` is off in base settings, and the grading routes also need `INK_PROTOTYPE_ENABLED` (tested). It does not make the prototype ready for public access, tenancy or a pilot.
+- Grading requests are limited to 64 KB, and refuse unknown fields, cross-page references, U+0000 and lone surrogates (tested). The client cannot send an expected answer, score or rule.
+- Student text never reaches `eval` or similar, and is written to the page as text only (tested).
+- Typed transcriptions are kept in the database, and are not logged. Grading records are append-only, including against DELETE, so **erasure of these rows needs a designed path before any real data** (**Legal**).
+- Grading endpoints have no rate limit, like the rest of the prototype.
+
 Known gaps, for the milestones that add real users:
 
 - Authentication, roles, object-level access, tenant isolation and audit logs

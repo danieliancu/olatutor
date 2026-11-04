@@ -1,0 +1,63 @@
+{
+  "description": "Each case patches valid_manual_transcription.json at the top level, and must break the named rule.",
+  "cases": [
+    {
+      "name": "manual_step_claims_strokes",
+      "rule": "MANUAL_NOT_INK",
+      "patch": { "nodes": [
+        { "id": "solution", "type": "Solution", "layer": "manual_transcription", "bbox": null, "stroke_ids": [], "source_content_id": null, "candidates": [], "attributes": {} },
+        { "id": "step-1", "type": "SolutionStep", "layer": "manual_transcription", "bbox": null, "stroke_ids": ["s1"], "source_content_id": null, "candidates": [ { "text": "1/2", "confidence": null } ], "attributes": {} }
+      ], "edges": [] }
+    },
+    {
+      "name": "manual_step_claims_geometry",
+      "rule": "MANUAL_NOT_INK",
+      "patch": { "nodes": [
+        { "id": "step-1", "type": "SolutionStep", "layer": "manual_transcription", "bbox": [1, 2, 3, 4], "stroke_ids": [], "source_content_id": null, "candidates": [ { "text": "1/2", "confidence": null } ], "attributes": {} }
+      ], "edges": [] }
+    },
+    {
+      "name": "manual_step_invents_a_confidence",
+      "rule": "CONFIDENCE_ORIGIN",
+      "patch": { "nodes": [
+        { "id": "step-1", "type": "SolutionStep", "layer": "manual_transcription", "bbox": null, "stroke_ids": [], "source_content_id": null, "candidates": [ { "text": "1/2", "confidence": { "value": 1, "calibrated": false, "calibration_id": null } } ], "attributes": {} }
+      ], "edges": [] }
+    },
+    {
+      "name": "manual_edge_invents_a_confidence",
+      "rule": "CONFIDENCE_ORIGIN",
+      "patch": { "edges": [
+        { "id": "solves", "type": "BELONGS_TO_PROBLEM", "from": "solution", "to": "problem", "confidence": { "value": 1, "calibrated": false, "calibration_id": null }, "hypothesis_group": null }
+      ] }
+    },
+    {
+      "name": "manual_text_presented_as_student_ink",
+      "rule": "MANUAL_PRODUCER",
+      "patch": { "nodes": [
+        { "id": "step-1", "type": "SolutionStep", "layer": "student", "bbox": null, "stroke_ids": ["s1"], "source_content_id": null, "candidates": [ { "text": "1/2", "confidence": null } ], "attributes": {} }
+      ], "edges": [] }
+    },
+    {
+      "name": "recogniser_graph_with_manual_layer",
+      "rule": "MANUAL_PRODUCER",
+      "patch": { "producer": { "kind": "recogniser", "recogniser": "fixture", "model_version": "none", "processed_at": "2026-11-04T12:00:00Z", "parameters": {} } }
+    },
+    {
+      "name": "recogniser_graph_with_no_confidence",
+      "rule": "CONFIDENCE_ORIGIN",
+      "patch": { "producer": { "kind": "recogniser", "recogniser": "fixture", "model_version": "none", "processed_at": "2026-11-04T12:00:00Z", "parameters": {} }, "nodes": [
+        { "id": "step-1", "type": "SolutionStep", "layer": "student", "bbox": [1, 2, 3, 4], "stroke_ids": ["s1"], "source_content_id": null, "candidates": [ { "text": "1/2", "confidence": null } ], "attributes": {} }
+      ], "edges": [] }
+    },
+    {
+      "name": "manual_graph_with_alternatives",
+      "rule": "MANUAL_PRODUCER",
+      "patch": { "hypothesis_groups": [ { "id": "g", "question": "Which?", "resolved": false, "unresolved_mass": 1 } ] }
+    },
+    {
+      "name": "manual_producer_without_a_tool",
+      "rule": "SCHEMA",
+      "patch": { "producer": { "kind": "manual_transcription", "processed_at": "2026-11-04T12:00:00Z", "confirmed_by": "prototype_user" } }
+    }
+  ]
+}

@@ -578,6 +578,7 @@ class NotebookApp {
     el("zoom-out").disabled = this.zoomIndex === 0;
     el("zoom-in").disabled = this.zoomIndex === ZOOM_LEVELS.length - 1;
     el("zoom-label").textContent = `${Math.round(ZOOM_LEVELS[this.zoomIndex] * 100)}%`;
+    document.dispatchEvent(new CustomEvent("notebook:changed"));
   }
 
   resize() {
@@ -605,6 +606,41 @@ class NotebookApp {
     el("server-render").hidden = true;
   }
 
+  #postRevision(page, seq, chainHash, visibleHash) {
+    return fetch(this.apiUrl(`pages/${page.id}/revisions/`), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-CSRFToken": this.csrfToken },
+      body: JSON.stringify({ seq, chain_hash: chainHash, visible_hash: visibleHash }),
+    });
+  }
+
+  // Finishes saving and pins the page, for callers that need the revision itself. Returns
+  // { status: "pinned", ... } or a status saying why not. A network failure rejects, unpinned or not.
+  async pinCurrentPage() {
+    const page = this.activePage;
+    if (page.state.opIndex.size === 0) return { status: "empty" };
+    const synced = await this.sync.whenIdle(page.journal);
+    if (!synced) return { status: "not-synced" };
+    const seq = page.state.opIndex.size;
+    const visibleHash = page.state.visibleHash();
+    const response = await this.#postRevision(page, seq, page.state.chainHash, visibleHash);
+    if (!response.ok) {
+      const { code } = await response.json();
+      return { status: "rejected", code };
+    }
+    const revision = await response.json();
+    page.state.pinIndex = seq;
+    await this.store?.setMeta(`pin:${page.id}`, seq);
+    this.updateButtons();
+    return {
+      status: "pinned",
+      pageId: page.id,
+      revision: revision.revision,
+      seq: revision.seq,
+      visibleHash: revision.visible_hash,
+    };
+  }
+
   // Pins the current page as an immutable revision, then shows what Python rebuilt from the journal.
   async save() {
     const page = this.activePage;
@@ -619,11 +655,7 @@ class NotebookApp {
     const chainHash = page.state.chainHash;
     el("client-hash").textContent = clientHash;
     try {
-      const pin = await fetch(this.apiUrl(`pages/${page.id}/revisions/`), {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-CSRFToken": this.csrfToken },
-        body: JSON.stringify({ seq, chain_hash: chainHash, visible_hash: clientHash }),
-      });
+      const pin = await this.#postRevision(page, seq, chainHash, clientHash);
       if (!pin.ok) {
         const { code } = await pin.json();
         this.#setComparison("mismatch", `The server did not accept this page (${code}).`);

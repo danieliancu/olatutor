@@ -56,6 +56,41 @@
       <button type="button" id="conflict-discard">Use the other version</button>
     </div>
 
+    {% if math_demo_enabled %}
+    <section id="math-demo" class="panel" aria-labelledby="math-demo-label">
+      <p id="math-demo-label"><strong>Development mode:</strong> manual transcription, not handwriting recognition.</p>
+      <label for="verify-exercise">Exercise</label>
+      <select id="verify-exercise"></select>
+      <span id="verify-statement"></span>
+      <button type="button" id="verify" disabled>Verify</button>
+      <p id="verify-status" role="status" data-state="idle"></p>
+
+      <div id="verify-work" class="verify-block" hidden>
+        <label for="verify-steps">Type what you wrote, one step per line, in order. The computer has not read your writing.</label>
+        <textarea id="verify-steps" rows="4" spellcheck="false" autocomplete="off"></textarea>
+        <button type="button" id="verify-confirm">Confirm and check</button>
+        <button type="button" id="verify-retry" hidden>Try again</button>
+      </div>
+
+      <div id="verify-result" class="verify-block" data-status="none" hidden>
+        <p id="verify-stale" class="verify-stale" hidden></p>
+        <p id="verify-summary"></p>
+        <p id="verify-score"></p>
+        <p id="verify-checked"></p>
+        <p id="verify-problem"></p>
+        <p id="verify-hint"></p>
+        <ol id="verify-step-list"></ol>
+        <button type="button" id="verify-explain">Explain more</button>
+        <p id="verify-explanation" hidden></p>
+      </div>
+
+      <details id="verify-history-box" class="verify-block">
+        <summary>Earlier checks on this page</summary>
+        <ul id="verify-history"></ul>
+      </details>
+    </section>
+    {% endif %}
+
     <div id="page-viewport">
       <canvas id="page" data-tool="pen" aria-label="Notebook page. Write here with a stylus or mouse."></canvas>
     </div>
@@ -73,5 +108,6 @@
   </main>
 
   <script type="module" src="{% static 'js/ink/notebook.js' %}"></script>
+  {% if math_demo_enabled %}<script type="module" src="{% static 'js/grading/verify.js' %}"></script>{% endif %}
 </body>
 </html>

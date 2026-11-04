@@ -49,3 +49,24 @@ def test_ambiguous_graph_does_not_invent_certainty() -> None:
     group = graph["hypothesis_groups"][0]
     assert group["resolved"] is False
     assert group["unresolved_mass"] > 0
+
+
+def test_results_cannot_be_compliant_unless_correct() -> None:
+    base = load("grading/v1/fixtures/result_review_required.json")
+    wrong = {
+        **base,
+        "task_compliance": "COMPLIANT",
+        "mathematical_status": "INCORRECT",
+        "error_class": None,
+        "score": 0,
+    }
+    assert validate_contracts.result_rule_violation(wrong) == "COMPLIANCE_REQUIRES_CORRECT"
+    right = {**wrong, "mathematical_status": "CORRECT", "score": 1}
+    assert validate_contracts.result_rule_violation(right) is None
+
+
+def test_v1_semantics_contract_is_untouched_by_manual_provenance() -> None:
+    schema = load("page_semantics/v1/schema.json")
+    assert schema["properties"]["version"]["const"] == 1
+    assert "manual_transcription" not in schema["$defs"]["node"]["properties"]["layer"]["enum"]
+    assert "oneOf" not in schema["$defs"]["confidence"]
